@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#e3e2dd">
+<title>jerson ombina ,  dev portfolio</title>
+<meta name="description" content="second-year student, information technology ,  building things that solve my specific needs, hopefully more someday ,  say hi via email, github, or linkedin">
+<meta property="og:title" content="jerson ombina ,  dev portfolio">
+<meta property="og:description" content="second-year student, information technology ,  building things that solve my specific needs, hopefully more someday">
+<meta property="og:type" content="website">
+<!-- og:url / og:image: fill in once the custom domain and a preview image exist -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Poiret+One&display=swap" rel="stylesheet">
+<style>
+  /* typeface roles ,  the ui chrome role is assigned to "now" in the brief, but
+     now is not available via google fonts, so it currently uses outfit.
+     when real now files land in /fonts, uncomment the @font-face block below
+     and flip --font-ui to 'Now' ,  one variable change, nothing else */
+
+  /* @font-face {
+    font-family: 'Now';
+    src: url('fonts/Now-Light.woff2') format('woff2');
+    font-weight: 300; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Now';
+    src: url('fonts/Now-Regular.woff2') format('woff2');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Now';
+    src: url('fonts/Now-Medium.woff2') format('woff2');
+    font-weight: 500; font-style: normal;
+  } */
+
+  :root {
+    --font-ui: 'Outfit', sans-serif;
+    --display-size: clamp(40px, 5vw, 76px);
+    /* poiret one's tall line box pushes its glyphs low ,  shift the buttons down
+       so they center on the visible letters, not the empty box above them */
+    --optical-shift: calc(var(--display-size) * 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; color-scheme: light; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    background: #0a0a09;
+  }
+
+  .page {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+    width: 100vw;
+  }
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+  }
+
+  /* left panel ,  intro + tunnel */
+  .tunnel-panel {
+    position: relative;
+    background: #e3e2dd;
+    overflow: hidden;
+    perspective: 900px;
+    padding: 4vw;
+  }
+  .intro {
+    position: relative;
+    z-index: 2;
+    max-width: 520px;
+  }
+  .intro h1 {
+    font-family: 'Poiret One', sans-serif;
+    font-weight: 400;
+    font-size: var(--display-size);
+    color: #171715;
+    letter-spacing: 0.03em;
+  }
+  .intro p {
+    font-size: clamp(32px, 2.4vw, 40px);
+    color: #3a3a37;
+    margin-top: 24px;
+    line-height: 1.5;
+    max-width: 520px;
+  }
+  .tags {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tags span {
+    font-family: var(--font-ui);
+    font-size: 20px;
+    color: #6a6a66;
+    letter-spacing: 0.02em;
+  }
+  .tunnel-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .tunnel-svg rect {
+    fill: none;
+    stroke: rgba(23, 23, 21, 0.28);
+    stroke-width: 1;
+  }
+  .tunnel-svg line {
+    stroke: rgba(23, 23, 21, 0.28);
+    stroke-width: 1;
+  }
+
+  /* right panel ,  project carousel */
+  .project-panel {
+    position: relative;
+    z-index: 0;
+    background: #121210;
+    display: flex;
+    flex-direction: column;
+    padding: 3.5vw 4vw 2.5vw;
+    min-height: 0;
+  }
+  .tunnel-dark {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .tunnel-dark rect,
+  .tunnel-dark line {
+    stroke: rgba(200, 199, 193, 0.1);
+  }
+  .project-frame {
+    flex: 1;
+    background: rgba(52, 52, 47, 0.6);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    min-height: 0;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+  .project-frame.clickable { cursor: pointer; }
+  .project-frame img,
+  .project-frame .placeholder {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 4px;
+  }
+  .project-frame .placeholder {
+    width: 78%;
+    height: 82%;
+    background: #f4f3ee;
+  }
+  .seek-track {
+    height: 2px;
+    background: #3d3d38;
+    border-radius: 2px;
+    margin-top: 30px;
+    position: relative;
+  }
+  .seek-fill {
+    height: 100%;
+    width: 0%;
+    background: #e3e2dd;
+    border-radius: 2px;
+  }
+  .seek-dot {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e3e2dd;
+    transform: translate(-50%, -50%);
+  }
+  .project-meta {
+    margin-top: 20px;
+  }
+  .project-meta #projTitle {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    font-size: 30px;
+    color: #f4f3ee;
+  }
+  .project-meta #projDesc {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    color: #8a8a84;
+    margin-top: 8px;
+    /* reserve ~2 lines of desc space so a short description never shrinks the thumbnail */
+    min-height: 78px;
+  }
+  .controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+  }
+  .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    transform: translateY(var(--optical-shift));
+  }
+  .controls button {
+    flex-shrink: 0;
+    width: calc(var(--display-size) * 0.6);
+    height: calc(var(--display-size) * 0.6);
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #26261f;
+    color: #f4f3ee;
+    transition: background 0.15s ease;
+  }
+  .controls button svg {
+    width: 42%;
+    height: 42%;
+  }
+  .controls button:hover { background: #34342f; }
+  .controls .play-btn {
+    background: #f4f3ee;
+    color: #121210;
+  }
+  .controls .play-btn:hover { background: #ffffff; }
+  .speed-btn {
+    font-family: var(--font-ui);
+    font-size: calc(var(--display-size) * 0.27);
+    font-weight: 400;
+    color: #8a8a84 !important;
+  }
+  .speed-btn.active { color: #f4f3ee !important; }
+  .projects-label {
+    font-family: 'Poiret One', sans-serif;
+    font-weight: 400;
+    font-size: var(--display-size);
+    line-height: 1;
+    white-space: nowrap;
+    color: #c8c7c0;
+  }
+
+  /* visible keyboard focus (brief section 8) */
+  button:focus-visible,
+  .project-frame:focus-visible {
+    outline: 2px solid #f4f3ee;
+    outline-offset: 2px;
+  }
+  a:focus-visible {
+    outline: 2px solid #171715;
+    outline-offset: 2px;
+  }
+
+  /* bottom contact bar */
+  .contact-bar {
+    background: #9f9e98;
+    padding: 16px 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .contact-bar .name {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    font-size: 20px;
+    color: #1c1c19;
+  }
+  .contact-bar .links {
+    display: flex;
+    gap: 24px;
+  }
+  .contact-bar a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    color: #2c2c28;
+    text-decoration: none;
+    position: relative;
+  }
+  .contact-bar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 1px;
+    background: #2c2c28;
+    transition: width 0.2s ease;
+  }
+  .contact-bar a:hover::after { width: 100%; }
+
+  @media (max-width: 860px) {
+    html, body { overflow: auto; height: auto; }
+    .page { height: auto; }
+    /* option C ,  stacked; the JS equalizer sets the right panel's height to match the left panel exactly */
+    .panels { grid-template-columns: 1fr; }
+    .tunnel-panel { height: auto; padding: 8vw 6vw; }
+    /* bottom padding cut down separately ,  top padding keeps the framing above
+       the thumbnail, but the controls row (pinned via margin-top:auto) should
+       land close to the edge, not clear another full 8vw gap under it */
+    .project-panel { padding: 8vw 6vw 3vw; }
+    /* mobile: reserve ~3 lines of desc space so the thumbnail never changes with text length */
+    .project-meta #projDesc { min-height: 120px; }
+    /* controls stay in one row on mobile too ,  buttons left, "my projects" pinned right */
+    .projects-label { font-size: clamp(20px, 6vw, 32px); }
+    /* bigger controls on mobile, growing toward the bottom ,  the thumbnail keeps its space */
+    .controls { gap: 6px; }
+    .controls button { width: 40px; height: 40px; }
+    .controls button svg { width: 46%; height: 46%; }
+    .speed-btn { font-size: 16px; }
+    /* aspect-ratio instead of vh ,  100vh on mobile browsers shifts every time
+       the address bar hides/shows while scrolling, which was making this jump
+       around. width doesn't move on scroll, so tying height to width via
+       aspect-ratio keeps this genuinely fixed. */
+    .project-frame { flex: none; height: auto; aspect-ratio: 4 / 3; max-height: 380px; min-height: 220px; }
+    .seek-track { margin-top: 20px; }
+    .project-meta { margin-top: 14px; }
+    /* base reserve for first paint; the equalizer script below recomputes this
+       precisely against the longest project description once fonts/layout settle */
+    .project-meta #projDesc { min-height: 78px; margin-top: 6px; }
+    .controls-row { margin-top: auto; padding-top: 16px; }
+    /* contact bar stays one row on mobile too ,  name left, links pinned right */
+    .contact-bar { padding: 14px 4vw; }
+    .contact-bar .name { font-size: 16px; }
+    .contact-bar .links { gap: 16px; }
+    .contact-bar a { font-size: 14px; }
+  }
+  /* showcase ,  side-scrolling screenshot strip inside the project frame */
+  .project-frame { position: relative; }
+  .showcase-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    will-change: transform;
+  }
+  .showcase-track img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    border-radius: 4px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  /* detail overlay ,  click a showcase image to inspect it */
+  .detail-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .detail-overlay.open {
+    visibility: visible;
+    opacity: 1;
+  }
+  .detail-square {
+    position: relative;
+    width: min(92vw, 920px);
+    height: min(78vh, 600px);
+    background: #000;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+  .overlay-photo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: #000;
+  }
+  .overlay-photo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .overlay-info {
+    width: 38%;
+    min-width: 220px;
+    background: #121210;
+    color: #f4f3ee;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+  }
+  .overlay-info h2 {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    font-size: 26px;
+  }
+  .overlay-info p {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #c8c7c0;
+  }
+  .overlay-github {
+    margin-top: auto;
+    align-self: flex-end;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #c8c7c0;
+    text-decoration: none;
+    position: relative;
+  }
+  .overlay-github:hover { color: #f4f3ee; }
+  .overlay-github::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 1px;
+    background: #c8c7c0;
+    transition: width 0.2s ease;
+  }
+  .overlay-github:hover::after { width: 100%; }
+
+  /* tiny email popup on the footer link */
+  .email-pop {
+    position: fixed;
+    z-index: 250;
+    background: #121210;
+    color: #f4f3ee;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    transform: translate(-50%, -100%);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .email-pop.open {
+    visibility: visible;
+    opacity: 1;
+  }
+  .overlay-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #f4f3ee;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 3;
+  }
+  .overlay-close:hover { background: rgba(255, 255, 255, 0.22); }
+  .overlay-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.14);
+    color: #f4f3ee;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 3;
+  }
+  .overlay-nav:hover { background: rgba(255, 255, 255, 0.24); }
+  .overlay-prev { left: 10px; }
+  .overlay-next { right: 10px; }
+  @media (max-width: 700px) {
+    .detail-square { flex-direction: column; }
+    .overlay-info { width: 100%; min-width: 0; }
+  }
+</style>
+</head><body>
+<div class="page">
+  <div class="panels">
+    <div class="tunnel-panel" id="tunnelPanel">
+      <div class="intro">
+        <h1>hi, i'm jerson</h1>
+        <p>second-year student<br>information technology<br>building things that solve<br>my specific needs<br>hopefully more someday</p>
+        <div class="tags">
+          <span>mobile app enthusiast</span>
+          <span>iot enthusiast</span>
+          <span>night-owl</span>
+          <span>tinkerer</span>
+          <span>problem-first builder</span>
+          <span>offline-first ideology</span>
+          <span>on-device llm enjoyer</span>
+        </div>
+      </div>
+      <svg class="tunnel-svg" id="tunnelSvg" preserveAspectRatio="none"></svg>
+    </div>
+
+    <div class="project-panel" id="projectPanel">
+      <svg class="tunnel-svg tunnel-dark" id="rightTunnelSvg" preserveAspectRatio="none"></svg>
+      <div class="project-frame" id="projectFrame">
+        <div class="showcase-track" id="projectShowcase"></div>
+        <div class="placeholder" id="projectImg"></div>
+      </div>
+      <div class="seek-track" id="seekTrack">
+        <div class="seek-fill" id="seekFill"></div>
+        <div class="seek-dot" id="seekDot"></div>
+      </div>
+      <div class="project-meta">
+        <span id="projTitle">vo.id</span>
+        <span id="projDesc">on-device ai assistant that turns photos into reminders</span>
+      </div>
+      <div class="controls-row">
+        <div class="controls">
+          <button id="prevBtn" aria-label="previous project">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+          </button>
+          <button id="playBtn" class="play-btn" aria-label="pause">
+            <svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+          </button>
+          <button id="nextBtn" aria-label="next project">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+          </button>
+          <button id="speedBtn" class="speed-btn" aria-label="toggle playback speed">1x</button>
+        </div>
+        <div class="projects-label">my projects</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <span class="name">jerson ombina</span>
+    <div class="links">
+      <a href="mailto:jersonombinabvd@gmail.com">email</a>
+      <a href="https://github.com/biiviid" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/jerson-ombina-027b1738a/" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </div>
+</div>
+
+  <!-- detail overlay ,  click a showcase image to inspect it -->
+  <div class="detail-overlay" id="detailOverlay">
+    <div class="detail-square">
+      <button class="overlay-close" id="overlayClose" aria-label="close">×</button>
+      <div class="overlay-photo"><img id="overlayImg" alt=""></div>
+      <div class="overlay-info">
+        <h2 id="overlayTitle"></h2>
+        <p id="overlayDetail"></p>
+        <a class="overlay-github" id="overlayGithub" href="#" target="_blank" rel="noopener">-> github</a>
+      </div>
+    </div>
+    <button class="overlay-nav overlay-prev" id="overlayPrev" aria-label="previous image">‹</button>
+    <button class="overlay-nav overlay-next" id="overlayNext" aria-label="next image">›</button>
+  </div>
+
+  <div class="email-pop" id="emailPop">jersonombinabvd@gmail.com</div>
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ===== tunnel ===== */
+    const tunnelPanel = document.getElementById('tunnelPanel');
+    const svg = document.getElementById('tunnelSvg');
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const RING_COUNT = 12;
+    const INNER_SIZE = 90;
+
+    const rings = [];
+    for (let i = 0; i < RING_COUNT; i++) {
+      const rect = document.createElementNS(svgNS, 'rect');
+      svg.appendChild(rect);
+      rings.push(rect);
+    }
+    const cornerLines = [];
+    for (let i = 0; i < 4; i++) {
+      const line = document.createElementNS(svgNS, 'line');
+      svg.appendChild(line);
+      cornerLines.push(line);
+    }
+
+    let W = 0, H = 0;
+    let targetVX = 0, targetVY = 0, curVX = 0, curVY = 0;
+
+    // prefers-reduced-motion: snap to target instead of springing (brief section 8)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPRING = prefersReduced ? 1 : 0.07;
+
+    // flow animation (experiment): rings travel TOWARD the vanishing point,
+    // recycling from the panel border inward. frozen when prefers-reduced-motion.
+    // uniform slots i/RING_COUNT keep the border ring exact and recycling overlap-free
+    const FLOW_SPEED = prefersReduced ? 0 : 0.15; // fraction of the ring cycle per second
+    const ringT = [];
+    for (let i = 0; i < RING_COUNT; i++) ringT.push(i / RING_COUNT);
+    let lastTs = 0;
+
+    // solid square at the vanishing box, so it always has walls while the rings flow
+    const vanishingBox = document.createElementNS(svgNS, 'rect');
+    vanishingBox.setAttribute('class', 'vanishing-box');
+    vanishingBox.setAttribute('width', INNER_SIZE);
+    vanishingBox.setAttribute('height', INNER_SIZE);
+    svg.appendChild(vanishingBox);
+
+    // slow dvd-style drift for the vanishing box ,  keeps motion on mobile (no cursor)
+    let driftX = 0, driftY = 0, driftVX = 0, driftVY = 0;
+    let userTargeting = false;
+
+    function initDrift() {
+      driftX = W * 0.5;
+      driftY = H * 0.66;
+      const speed = Math.max(16, Math.min(W, H) * 0.05);
+      driftVX = speed * 0.70710678;
+      driftVY = speed * 0.70710678;
+    }
+
+    function setDefaultTarget() {
+      userTargeting = false;
+      if (prefersReduced) {
+        targetVX = W * 0.5;
+        targetVY = H * 0.66;
+      } else {
+        driftX = targetVX; // resume drifting from wherever the box currently is
+        driftY = targetVY;
+      }
+    }
+
+    function resize() {
+      const r = tunnelPanel.getBoundingClientRect();
+      W = r.width;
+      H = r.height;
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      if (curVX === 0 && curVY === 0) {
+        initDrift();
+        targetVX = driftX;
+        targetVY = driftY;
+        curVX = targetVX;
+        curVY = targetVY;
+      } else {
+        driftX = Math.max(W * 0.16, Math.min(W * 0.84, driftX));
+        driftY = Math.max(H * 0.16, Math.min(H * 0.84, driftY));
+      }
+    }
+    resize();
+    // keep the tunnel in sync with its panel whenever it resizes (equalizer,
+    // font swaps, orientation) ,  prevents the vanishing box from stretching
+    const panelResize = new ResizeObserver(resize);
+    panelResize.observe(tunnelPanel);
+
+    // keep the vanishing point ~16% away from any panel edge
+    function clampToPanel(cx, cy) {
+      const margin = 0.16;
+      return [
+        Math.max(W * margin, Math.min(W * (1 - margin), cx)),
+        Math.max(H * margin, Math.min(H * (1 - margin), cy))
+      ];
+    }
+
+    tunnelPanel.addEventListener('mousemove', (e) => {
+      const r = tunnelPanel.getBoundingClientRect();
+      const p = clampToPanel(e.clientX - r.left, e.clientY - r.top);
+      targetVX = p[0];
+      targetVY = p[1];
+      userTargeting = true;
+    });
+    tunnelPanel.addEventListener('mouseleave', setDefaultTarget);
+
+    // touch-drag tracking for mobile (brief section 7): finger steers the
+    // vanishing point, release springs it back to rest
+    function trackTouch(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const r = tunnelPanel.getBoundingClientRect();
+      const p = clampToPanel(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top);
+      targetVX = p[0];
+      targetVY = p[1];
+      userTargeting = true;
+    }
+    tunnelPanel.addEventListener('touchstart', trackTouch, { passive: true });
+    tunnelPanel.addEventListener('touchmove', trackTouch, { passive: true });
+    tunnelPanel.addEventListener('touchend', setDefaultTarget, { passive: true });
+
+    // spring the vanishing point toward the target each frame
+    function drawTunnel(ts) {
+      if (ts !== undefined) {
+        if (lastTs === 0) lastTs = ts;
+        const dt = (ts - lastTs) / 1000;
+        lastTs = ts;
+        if (!prefersReduced) {
+          // advance the flow toward the vanishing point (frozen under reduced motion)
+          for (let i = 0; i < RING_COUNT; i++) {
+            ringT[i] += FLOW_SPEED * dt;
+            if (ringT[i] >= 1) ringT[i] -= 1;
+          }
+          // slow dvd-style drift of the vanishing box
+          driftX += driftVX * dt;
+          driftY += driftVY * dt;
+          const xMin = W * 0.16, xMax = W * 0.84;
+          const yMin = H * 0.16, yMax = H * 0.84;
+          if (driftX <= xMin) { driftX = xMin; driftVX = Math.abs(driftVX); }
+          else if (driftX >= xMax) { driftX = xMax; driftVX = -Math.abs(driftVX); }
+          if (driftY <= yMin) { driftY = yMin; driftVY = Math.abs(driftVY); }
+          else if (driftY >= yMax) { driftY = yMax; driftVY = -Math.abs(driftVY); }
+          if (!userTargeting) {
+            targetVX = driftX;
+            targetVY = driftY;
+          }
+        }
+      }
+
+      curVX += (targetVX - curVX) * SPRING;
+      curVY += (targetVY - curVY) * SPRING;
+
+      for (let i = 0; i < RING_COUNT; i++) {
+        const t = Math.pow(ringT[i], 1.6);
+        const w = W + (INNER_SIZE - W) * t;
+        const h = H + (INNER_SIZE - H) * t;
+        const rectX = W / 2 + (curVX - W / 2) * t - w / 2;
+        const rectY = H / 2 + (curVY - H / 2) * t - h / 2;
+        rings[i].setAttribute('x', rectX);
+        rings[i].setAttribute('y', rectY);
+        rings[i].setAttribute('width', w);
+        rings[i].setAttribute('height', h);
+        // rings recycle at the panel border as they flow toward the vanishing point (experiment)
+        rings[i].setAttribute('opacity', 1 - t * 0.35);
+      }
+
+      const innerW = INNER_SIZE;
+      const innerH = INNER_SIZE;
+      const innerX = W / 2 + (curVX - W / 2) - innerW / 2;
+      const innerY = H / 2 + (curVY - H / 2) - innerH / 2;
+      vanishingBox.setAttribute('x', innerX);
+      vanishingBox.setAttribute('y', innerY);
+
+      const corners = [[0, 0], [W, 0], [W, H], [0, H]];
+      const innerCorners = [
+        [innerX, innerY],
+        [innerX + innerW, innerY],
+        [innerX + innerW, innerY + innerH],
+        [innerX, innerY + innerH]
+      ];
+      for (let i = 0; i < 4; i++) {
+        cornerLines[i].setAttribute('x1', corners[i][0]);
+        cornerLines[i].setAttribute('y1', corners[i][1]);
+        cornerLines[i].setAttribute('x2', innerCorners[i][0]);
+        cornerLines[i].setAttribute('y2', innerCorners[i][1]);
+      }
+
+      requestAnimationFrame(drawTunnel);
+    }
+    drawTunnel();
+
+    /* ===== carousel ===== */
+    // images/links are placeholders until real assets and urls exist
+    const projects = [
+      { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime ,  reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
+      { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes ,  built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
+      { title: 'ping', desc: 'broadcast announcements for classrooms and workplaces', link: 'https://github.com/biiviid/Ping', images: ['PingSS/Ping1.jpg', 'PingSS/Ping2.jpg', 'PingSS/Ping4.jpg', 'PingSS/Ping5.jpg', 'PingSS/Ping6.png'], detail: 'a broadcast and announcement system for groups of any size, from a classroom to an entire university to a workforce ,  built for seamless delivery with a focus on widgets' },
+      { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor ,  detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
+      { title: 'cutlog', desc: 'calorie and protein tracker', link: 'https://github.com/biiviid/CutLog', images: ['cutSS/cut1.png', 'cutSS/cut2.jpg', 'cutSS/cut3.jpg', 'cutSS/cut4.jpg', 'cutSS/cut5.jpg'], detail: 'a simple calorie and protein tracker, loosely based on common knowledge and dfa food information ,  mostly personal, built to help with a calorie deficit' },
+      { title: 'cubechron', desc: 'a basic speedcubing timer', link: 'https://github.com/biiviid/CubeChron', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, also called basics ,  the period is part of the name, it stands for back to the basics, no unnecessary features' },
+      { title: "bob's studio", desc: 'offline agentic ide running a local model', link: 'https://github.com/biiviid/bob_studio', images: ['bobSS/bob1.png', 'bobSS/bob2.png'], detail: "an agentic ide that runs entirely on a locally hosted model, qwen2.5-coder:3b via ollama ,  an offline agentic ide built for the laughs and the party trick points" }
+    ];
+    // exposed so the mobile equalizer script (bottom of page) can measure the
+    // longest description's actual wrapped line count instead of guessing one
+    window.__PROJECT_DESCS__ = projects.map(function (p) { return p.desc; });
+
+    let idx = 0, speed = 1, progress = 0;
+    let manuallyPaused = false; // manual play/pause ,  always wins (brief section 5)
+    let isHovering = false;     // hover-pause convenience (desktop)
+    let touchHold = false;      // tap-and-hold pause (mobile)
+    let suppressClick = false;  // a held release is not a tap
+    let holdTimer = null;
+    let overlayOpen = false;    // detail overlay open ,  freezes scroll + auto-advance
+    let scrubbing = false;      // seekbar drag ,  freezes auto-advance while held
+
+    const durationTicks = 130; // 13s at 1x (100ms per tick), 6.5s at 2x
+    const DURATION_MS = durationTicks * 100;
+
+    const seekTrack = document.getElementById('seekTrack');
+    const seekFill = document.getElementById('seekFill');
+    const seekDot = document.getElementById('seekDot');
+    const projTitle = document.getElementById('projTitle');
+    const projDesc = document.getElementById('projDesc');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const speedBtn = document.getElementById('speedBtn');
+    const projectPanel = document.getElementById('projectPanel');
+    const projectFrame = document.getElementById('projectFrame');
+    const projectImg = document.getElementById('projectImg');
+    const showcase = document.getElementById('projectShowcase');
+    let trackWidth = 0; // measured once the strip images load
+    let frameWidth = 0;  // the strip's visible window (the frame's inner width)
+    // combined pause state ,  manual pause wins until manually released;
+    // touch-hold only pauses when not manually paused; overlay + scrub freeze all
+    function isPlaying() {
+      return !manuallyPaused && !isHovering && !touchHold && !overlayOpen && !scrubbing;
+    }
+
+    function measureTrack() {
+      frameWidth = projectFrame.clientWidth || projectFrame.getBoundingClientRect().width || 0;
+      // strip width = sum of image widths + gaps; falls back to natural
+      // dimensions if layout hasn't settled yet
+      let w = showcase.scrollWidth;
+      const imgs = showcase.querySelectorAll('img');
+      if (w <= 0 && imgs.length) {
+        w = 0;
+        Array.prototype.forEach.call(imgs, function (img) {
+          w += (img.naturalWidth || 0) || (img.getBoundingClientRect().width || 0);
+        });
+        w += (imgs.length - 1) * 14; // gaps
+      }
+      trackWidth = w;
+    }
+    function updateSeek() {
+      seekFill.style.width = progress + '%';
+      seekDot.style.left = progress + '%';
+      // travel ends when the last image's tail reaches the frame's right edge,
+      // so the final image is fully visible at 100% (no empty-screen stretch)
+      const dist = Math.max(0, trackWidth - frameWidth);
+      if (trackWidth > 0) {
+        showcase.style.transform = 'translateX(' + (-progress / 100 * dist) + 'px)';
+      }
+    }
+
+    function render() {
+      projTitle.textContent = projects[idx].title;
+      projDesc.textContent = projects[idx].desc;
+
+      // build the side-scrolling screenshot strip for this project
+      const imgs = projects[idx].images || [];
+      showcase.innerHTML = '';
+      if (imgs.length) {
+        projectImg.style.display = 'none';
+        imgs.forEach(function (src) {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = projects[idx].title;
+          showcase.appendChild(img);
+        });
+        measureTrack();
+        // images may still be loading ,  re-measure when each one is ready
+        Array.prototype.forEach.call(showcase.querySelectorAll('img'), function (img) {
+          if (img.complete) measureTrack();
+          else img.addEventListener('load', measureTrack);
+        });
+      } else {
+        projectImg.style.display = '';
+        projectImg.classList.add('placeholder');
+        projectImg.innerHTML = '';
+      }
+
+      const link = projects[idx].link;
+      if (link) {
+        projectFrame.classList.add('clickable');
+        projectFrame.setAttribute('role', 'link');
+        projectFrame.setAttribute('tabindex', '0');
+        projectFrame.setAttribute('aria-label', projects[idx].title);
+      } else {
+        projectFrame.classList.remove('clickable');
+        projectFrame.removeAttribute('role');
+        projectFrame.removeAttribute('tabindex');
+        projectFrame.removeAttribute('aria-label');
+      }
+
+      progress = 0;
+      updateSeek();
+    }
+
+    function goTo(newIdx) {
+      idx = (newIdx + projects.length) % projects.length;
+      progress = 0;
+      render();
+    }
+
+    // auto-advance + showcase scroll ,  one smooth rAF loop (manual controls
+    // and seekbar scrubbing pause it; always runs so the strip never sits still)
+    let lastFrameTs = 0;
+    function carouselLoop(ts) {
+      if (lastFrameTs) {
+        const dt = (ts - lastFrameTs) / 1000;
+        if (isPlaying()) {
+          progress += (100 / DURATION_MS) * speed * dt * 1000; // dt is in seconds, DURATION_MS in ms
+          if (progress >= 100) {
+            goTo(idx + 1); // last image's tail exits ,  loop + next project
+          } else {
+            updateSeek();
+          }
+        }
+      }
+      lastFrameTs = ts;
+      requestAnimationFrame(carouselLoop);
+    }
+    requestAnimationFrame(carouselLoop);
+
+    // interactive seekbar ,  hold the dot (or the track) and drag to scrub the strip
+    let dragging = false;
+    function pointerProgress(clientX) {
+      const r = seekTrack.getBoundingClientRect();
+      return Math.max(0, Math.min(100, (clientX - r.left) / r.width * 100));
+    }
+    seekTrack.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      scrubbing = true;
+      seekTrack.setPointerCapture(e.pointerId);
+      progress = pointerProgress(e.clientX);
+      updateSeek();
+      e.preventDefault();
+    });
+    seekTrack.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      progress = pointerProgress(e.clientX);
+      updateSeek();
+    });
+    function endDrag() {
+      dragging = false;
+      scrubbing = false;
+    }
+    seekTrack.addEventListener('pointerup', endDrag);
+    seekTrack.addEventListener('pointercancel', endDrag);
+    window.addEventListener('resize', measureTrack);
+    window.addEventListener('load', measureTrack);
+
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(idx - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(idx + 1));
+
+    const PAUSE_ICON = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+    const PLAY_ICON = '<polygon points="6 4 20 12 6 20 6 4"></polygon>';
+
+    playBtn.addEventListener('click', () => {
+      manuallyPaused = !manuallyPaused;
+      playIcon.innerHTML = manuallyPaused ? PLAY_ICON : PAUSE_ICON;
+      playBtn.setAttribute('aria-label', manuallyPaused ? 'play' : 'pause');
+    });
+
+    speedBtn.addEventListener('click', () => {
+      speed = speed === 1 ? 2 : 1;
+      speedBtn.textContent = speed + 'x';
+      speedBtn.classList.toggle('active', speed === 2);
+    });
+
+    // hover-pause (desktop only ,  no hover on touch)
+    // hover no longer pauses anything, it was disruptive to the scroll
+
+    // tap-and-hold pauses, release resumes (mobile equivalent of hover-pause)
+    projectFrame.addEventListener('touchstart', () => {
+      holdTimer = setTimeout(() => { touchHold = true; }, 300);
+    }, { passive: true });
+    projectFrame.addEventListener('touchend', () => {
+      clearTimeout(holdTimer);
+      suppressClick = touchHold;
+      touchHold = false;
+    }, { passive: true });
+    projectFrame.addEventListener('touchcancel', () => {
+      clearTimeout(holdTimer);
+      touchHold = false;
+    }, { passive: true });
+
+    // open the current project's link when present; no dead click without one
+    function openProject() {
+      const link = projects[idx].link;
+      if (link) window.open(link, '_blank', 'noopener');
+    }
+    projectFrame.addEventListener('click', () => {
+      if (suppressClick) { suppressClick = false; return; }
+      openProject();
+    });
+    projectFrame.addEventListener('keydown', (e) => {
+      if (e.target === projectFrame && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        openProject();
+      }
+    });
+
+    // detail overlay ,  click a showcase image to pause everything and inspect it
+    const overlay = document.getElementById('detailOverlay');
+    const overlayImg = document.getElementById('overlayImg');
+    const overlayTitle = document.getElementById('overlayTitle');
+    const overlayDetail = document.getElementById('overlayDetail');
+    const overlayGithub = document.getElementById('overlayGithub');
+    let overlayImgIdx = 0;
+
+    function showOverlayImage(i) {
+      const imgs = projects[idx].images || [];
+      if (!imgs.length) return;
+      overlayImgIdx = (i + imgs.length) % imgs.length;
+      overlayImg.src = imgs[overlayImgIdx];
+      overlayImg.alt = projects[idx].title;
+    }
+
+    function openOverlay(clickedImg) {
+      const all = Array.prototype.slice.call(showcase.querySelectorAll('img'));
+      overlayImgIdx = Math.max(0, all.indexOf(clickedImg));
+      overlayTitle.textContent = projects[idx].title;
+      overlayDetail.textContent = projects[idx].detail || projects[idx].desc;
+      if (overlayGithub) overlayGithub.href = projects[idx].link || '#';
+      showOverlayImage(overlayImgIdx);
+      overlay.classList.add('open');
+      overlayOpen = true;
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('open');
+      overlayOpen = false;
+    }
+
+    showcase.addEventListener('click', function (e) {
+      const img = e.target.closest('img');
+      if (img) {
+        e.preventDefault();
+        e.stopPropagation(); // don't trigger the frame's project link
+        openOverlay(img);
+      }
+    });
+    document.getElementById('overlayClose').addEventListener('click', closeOverlay);
+    document.getElementById('overlayPrev').addEventListener('click', function () { showOverlayImage(overlayImgIdx - 1); });
+    document.getElementById('overlayNext').addEventListener('click', function () { showOverlayImage(overlayImgIdx + 1); });
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeOverlay(); // clicking the dimmed backdrop
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!overlayOpen) return;
+      if (e.key === 'Escape') closeOverlay();
+      else if (e.key === 'ArrowLeft') showOverlayImage(overlayImgIdx - 1);
+      else if (e.key === 'ArrowRight') showOverlayImage(overlayImgIdx + 1);
+    });
+
+    // tiny email popup that sits over the footer email link
+    const emailLink = document.querySelector('.contact-bar a[href^="mailto:"]');
+    const emailPop = document.getElementById('emailPop');
+    if (emailLink && emailPop) {
+      let nearEmail = false;   // cursor over the popup or the email link
+      let emailHideTimer = null;
+      function scheduleEmailHide() {
+        clearTimeout(emailHideTimer);
+        emailHideTimer = setTimeout(function () {
+          if (!nearEmail) emailPop.classList.remove('open'); // gone after 5s if not near
+        }, 5000);
+      }
+      emailLink.addEventListener('click', function (e) {
+        e.preventDefault(); // popup shows the address instead of launching the mail app
+        const r = emailLink.getBoundingClientRect();
+        emailPop.style.left = (r.left + r.width / 2) + 'px';
+        emailPop.style.top = (r.top - 10) + 'px';
+        emailPop.classList.toggle('open');
+        if (emailPop.classList.contains('open')) scheduleEmailHide();
+      });
+      emailPop.addEventListener('mouseenter', function () { nearEmail = true; clearTimeout(emailHideTimer); });
+      emailPop.addEventListener('mouseleave', function () { nearEmail = false; scheduleEmailHide(); });
+      emailLink.addEventListener('mouseenter', function () { nearEmail = true; clearTimeout(emailHideTimer); });
+      emailLink.addEventListener('mouseleave', function () { nearEmail = false; scheduleEmailHide(); });
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('#emailPop') && !e.target.closest('a[href^="mailto:"]')) {
+          emailPop.classList.remove('open');
+          clearTimeout(emailHideTimer);
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          emailPop.classList.remove('open');
+          clearTimeout(emailHideTimer);
+        }
+      });
+    }
+
+    render();
+  })();
+
+  /* ===== project-panel tunnel =====
+     same perspective grid as the left panel, but a really translucent gray on
+     the dark side ,  sits above the panel background, behind all content */
+  (function () {
+    'use strict';
+    const panel = document.getElementById('projectPanel');
+    const svg = document.getElementById('rightTunnelSvg');
+    if (!panel || !svg) return;
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const RING_COUNT = 12;
+    const INNER_SIZE = 90;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPRING = prefersReduced ? 1 : 0.07; // snap instead of spring when reduced
+
+    // flow animation (experiment): rings travel AWAY from the vanishing point,
+    // recycling from the inner square outward. frozen when prefers-reduced-motion.
+    // uniform slots i/RING_COUNT keep the border ring exact and recycling overlap-free
+    const FLOW_SPEED = prefersReduced ? 0 : 0.15; // fraction of the ring cycle per second
+    const ringT = [];
+    for (let i = 0; i < RING_COUNT; i++) ringT.push(i / RING_COUNT);
+    let lastTs = 0;
+
+    // solid square at the vanishing box, so it always has walls while the rings flow
+    const vanishingBox = document.createElementNS(svgNS, 'rect');
+    vanishingBox.setAttribute('class', 'vanishing-box');
+    vanishingBox.setAttribute('width', INNER_SIZE);
+    vanishingBox.setAttribute('height', INNER_SIZE);
+    svg.appendChild(vanishingBox);
+
+    const rings = [];
+    for (let i = 0; i < RING_COUNT; i++) {
+      const rect = document.createElementNS(svgNS, 'rect');
+      svg.appendChild(rect);
+      rings.push(rect);
+    }
+    const cornerLines = [];
+    for (let i = 0; i < 4; i++) {
+      const line = document.createElementNS(svgNS, 'line');
+      svg.appendChild(line);
+      cornerLines.push(line);
+    }
+
+    let W = 0, H = 0;
+    let targetVX = 0, targetVY = 0, curVX = 0, curVY = 0;
+
+    // slow dvd-style drift for the vanishing box ,  keeps motion on mobile (no cursor)
+    let driftX = 0, driftY = 0, driftVX = 0, driftVY = 0;
+    let userTargeting = false;
+
+    function initDrift() {
+      driftX = W * 0.5;
+      driftY = H * 0.5;
+      const speed = Math.max(16, Math.min(W, H) * 0.05);
+      driftVX = speed * 0.70710678;
+      driftVY = speed * 0.70710678;
+    }
+
+    function setDefaultTarget() {
+      userTargeting = false;
+      if (prefersReduced) {
+        targetVX = W * 0.5;
+        targetVY = H * 0.5;
+      } else {
+        driftX = targetVX; // resume drifting from wherever the box currently is
+        driftY = targetVY;
+      }
+    }
+
+    function resize() {
+      const r = panel.getBoundingClientRect();
+      W = r.width;
+      H = r.height;
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      if (curVX === 0 && curVY === 0) {
+        initDrift();
+        targetVX = driftX;
+        targetVY = driftY;
+        curVX = targetVX;
+        curVY = targetVY;
+      } else {
+        driftX = Math.max(W * 0.16, Math.min(W * 0.84, driftX));
+        driftY = Math.max(H * 0.16, Math.min(H * 0.84, driftY));
+      }
+    }
+    resize();
+    // keep the tunnel in sync with its panel whenever it resizes (equalizer,
+    // font swaps, orientation) ,  prevents the vanishing box from stretching
+    const panelResize = new ResizeObserver(resize);
+    panelResize.observe(panel);
+
+    function clampToPanel(cx, cy) {
+      const margin = 0.16;
+      return [
+        Math.max(W * margin, Math.min(W * (1 - margin), cx)),
+        Math.max(H * margin, Math.min(H * (1 - margin), cy))
+      ];
+    }
+
+    panel.addEventListener('mousemove', (e) => {
+      const r = panel.getBoundingClientRect();
+      const p = clampToPanel(e.clientX - r.left, e.clientY - r.top);
+      targetVX = p[0];
+      targetVY = p[1];
+      userTargeting = true;
+    });
+    panel.addEventListener('mouseleave', setDefaultTarget);
+
+    function trackTouch(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const r = panel.getBoundingClientRect();
+      const p = clampToPanel(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top);
+      targetVX = p[0];
+      targetVY = p[1];
+      userTargeting = true;
+    }
+    panel.addEventListener('touchstart', trackTouch, { passive: true });
+    panel.addEventListener('touchmove', trackTouch, { passive: true });
+    panel.addEventListener('touchend', setDefaultTarget, { passive: true });
+
+    function drawTunnel(ts) {
+      if (ts !== undefined) {
+        if (lastTs === 0) lastTs = ts;
+        const dt = (ts - lastTs) / 1000;
+        lastTs = ts;
+        if (!prefersReduced) {
+          // advance the flow away from the vanishing point (frozen under reduced motion)
+          for (let i = 0; i < RING_COUNT; i++) {
+            ringT[i] -= FLOW_SPEED * dt;
+            if (ringT[i] < 0) ringT[i] += 1;
+          }
+          // slow dvd-style drift of the vanishing box
+          driftX += driftVX * dt;
+          driftY += driftVY * dt;
+          const xMin = W * 0.16, xMax = W * 0.84;
+          const yMin = H * 0.16, yMax = H * 0.84;
+          if (driftX <= xMin) { driftX = xMin; driftVX = Math.abs(driftVX); }
+          else if (driftX >= xMax) { driftX = xMax; driftVX = -Math.abs(driftVX); }
+          if (driftY <= yMin) { driftY = yMin; driftVY = Math.abs(driftVY); }
+          else if (driftY >= yMax) { driftY = yMax; driftVY = -Math.abs(driftVY); }
+          if (!userTargeting) {
+            targetVX = driftX;
+            targetVY = driftY;
+          }
+        }
+      }
+
+      curVX += (targetVX - curVX) * SPRING;
+      curVY += (targetVY - curVY) * SPRING;
+
+      for (let i = 0; i < RING_COUNT; i++) {
+        const t = Math.pow(ringT[i], 1.6);
+        const w = W + (INNER_SIZE - W) * t;
+        const h = H + (INNER_SIZE - H) * t;
+        const rectX = W / 2 + (curVX - W / 2) * t - w / 2;
+        const rectY = H / 2 + (curVY - H / 2) * t - h / 2;
+        rings[i].setAttribute('x', rectX);
+        rings[i].setAttribute('y', rectY);
+        rings[i].setAttribute('width', w);
+        rings[i].setAttribute('height', h);
+        rings[i].setAttribute('opacity', 1 - t * 0.35);
+      }
+
+      const innerX = W / 2 + (curVX - W / 2) - INNER_SIZE / 2;
+      const innerY = H / 2 + (curVY - H / 2) - INNER_SIZE / 2;
+      vanishingBox.setAttribute('x', innerX);
+      vanishingBox.setAttribute('y', innerY);
+      const corners = [[0, 0], [W, 0], [W, H], [0, H]];
+      const innerCorners = [
+        [innerX, innerY],
+        [innerX + INNER_SIZE, innerY],
+        [innerX + INNER_SIZE, innerY + INNER_SIZE],
+        [innerX, innerY + INNER_SIZE]
+      ];
+      for (let i = 0; i < 4; i++) {
+        cornerLines[i].setAttribute('x1', corners[i][0]);
+        cornerLines[i].setAttribute('y1', corners[i][1]);
+        cornerLines[i].setAttribute('x2', innerCorners[i][0]);
+        cornerLines[i].setAttribute('y2', innerCorners[i][1]);
+      }
+
+      requestAnimationFrame(drawTunnel);
+    }
+    drawTunnel();
+  })();
+</script>
+<script>
+  /* option C equalizer ,  stacked/mobile only: the right panel's height always
+     matches the left panel's actual size, so both panels share equal space */
+  (function () {
+    'use strict';
+    const left = document.querySelector('.tunnel-panel');
+    const right = document.querySelector('.project-panel');
+    const frame = document.querySelector('.project-frame');
+    const desc = document.querySelector('.project-meta #projDesc');
+    const mq = window.matchMedia('(max-width: 860px)');
+    function descLineHeight() {
+      if (!desc) return 40;
+      const lh = getComputedStyle(desc).lineHeight;
+      if (lh && lh !== 'normal') {
+        const px = parseFloat(lh);
+        if (isFinite(px)) return px;
+      }
+      return parseFloat(getComputedStyle(desc).fontSize) * 1.4;
+    }
+    // measures the tallest a project description actually gets (in real wrapped
+    // lines, not a guessed constant), so #projDesc only reserves what's needed
+    // instead of a fixed 2-3 "line budget" that leaves dead space for short text
+    function computeDescReserve() {
+      if (!desc) return 78;
+      const descs = window.__PROJECT_DESCS__;
+      if (!descs || !descs.length) return desc.offsetHeight;
+      const probe = desc.cloneNode(false);
+      probe.style.position = 'absolute';
+      probe.style.visibility = 'hidden';
+      probe.style.pointerEvents = 'none';
+      probe.style.minHeight = '0';
+      probe.style.height = 'auto';
+      probe.style.width = desc.getBoundingClientRect().width + 'px';
+      probe.removeAttribute('id');
+      document.body.appendChild(probe);
+      const lh = descLineHeight();
+      let maxLines = 1;
+      for (let i = 0; i < descs.length; i++) {
+        probe.textContent = descs[i];
+        const lines = Math.max(1, Math.round(probe.scrollHeight / lh));
+        if (lines > maxLines) maxLines = lines;
+      }
+      document.body.removeChild(probe);
+      return maxLines * lh;
+    }
+
+    function equalize() {
+      if (!left || !right) return;
+      if (mq.matches) {
+        right.style.minHeight = left.offsetHeight + 'px';
+        // thumbnail stays a fixed size (set in CSS via clamp()) ,  no more JS
+        // stretching it to soak up leftover space
+        if (frame) {
+          frame.style.flex = '';
+          frame.style.height = '';
+        }
+        // desc reserves exactly enough for the longest project description,
+        // so short ones don't leave a dead-space gap before the controls
+        if (desc) desc.style.minHeight = computeDescReserve() + 'px';
+      } else {
+        right.style.minHeight = '';
+        if (frame) {
+          frame.style.flex = '';
+          frame.style.height = '';
+        }
+        if (desc) desc.style.minHeight = '';
+      }
+    }
+    window.addEventListener('load', equalize);
+    window.addEventListener('resize', equalize);
+    if (mq.addEventListener) mq.addEventListener('change', equalize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(equalize);
+    equalize();
+  })();
+</script>
+</body>
+</html>
