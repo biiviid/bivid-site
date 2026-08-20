@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#e3e2dd">
-<title>jerson ombina ,  dev portfolio</title>
-<meta name="description" content="second-year student, information technology ,  building things that solve my specific needs, hopefully more someday ,  say hi via email, github, or linkedin">
-<meta property="og:title" content="jerson ombina ,  dev portfolio">
-<meta property="og:description" content="second-year student, information technology ,  building things that solve my specific needs, hopefully more someday">
+<title>jerson ombina, dev portfolio</title>
+<meta name="description" content="second-year student, information technology, building things that solve my specific needs, hopefully more someday, say hi via email, github, or linkedin">
+<meta property="og:title" content="jerson ombina, dev portfolio">
+<meta property="og:description" content="second-year student, information technology, building things that solve my specific needs, hopefully more someday">
 <meta property="og:type" content="website">
 <!-- og:url / og:image: fill in once the custom domain and a preview image exist -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Poiret+One&display=swap" rel="stylesheet">
 <style>
-  /* typeface roles ,  the ui chrome role is assigned to "now" in the brief, but
+  /* typeface roles, the ui chrome role is assigned to "now" in the brief, but
      now is not available via google fonts, so it currently uses outfit.
      when real now files land in /fonts, uncomment the @font-face block below
-     and flip --font-ui to 'Now' ,  one variable change, nothing else */
+     and flip --font-ui to 'Now', one variable change, nothing else */
 
   /* @font-face {
     font-family: 'Now';
@@ -39,7 +39,7 @@
   :root {
     --font-ui: 'Outfit', sans-serif;
     --display-size: clamp(40px, 5vw, 76px);
-    /* poiret one's tall line box pushes its glyphs low ,  shift the buttons down
+    /* poiret one's tall line box pushes its glyphs low, shift the buttons down
        so they center on the visible letters, not the empty box above them */
     --optical-shift: calc(var(--display-size) * 0.08);
   }
@@ -64,7 +64,7 @@
     min-height: 0;
   }
 
-  /* left panel ,  intro + tunnel */
+  /* left panel, intro + tunnel */
   .tunnel-panel {
     position: relative;
     background: #e3e2dd;
@@ -120,7 +120,7 @@
     stroke-width: 1;
   }
 
-  /* right panel ,  project carousel */
+  /* right panel, project carousel */
   .project-panel {
     position: relative;
     z-index: 0;
@@ -312,23 +312,23 @@
   @media (max-width: 860px) {
     html, body { overflow: auto; height: auto; }
     .page { height: auto; }
-    /* option C ,  stacked; the JS equalizer sets the right panel's height to match the left panel exactly */
+    /* option C, stacked; the JS equalizer sets the right panel's height to match the left panel exactly */
     .panels { grid-template-columns: 1fr; }
     .tunnel-panel { height: auto; padding: 8vw 6vw; }
-    /* bottom padding cut down separately ,  top padding keeps the framing above
+    /* bottom padding cut down separately, top padding keeps the framing above
        the thumbnail, but the controls row (pinned via margin-top:auto) should
        land close to the edge, not clear another full 8vw gap under it */
     .project-panel { padding: 8vw 6vw 3vw; }
     /* mobile: reserve ~3 lines of desc space so the thumbnail never changes with text length */
     .project-meta #projDesc { min-height: 120px; }
-    /* controls stay in one row on mobile too ,  buttons left, "my projects" pinned right */
+    /* controls stay in one row on mobile too, buttons left, "my projects" pinned right */
     .projects-label { font-size: clamp(20px, 6vw, 32px); }
-    /* bigger controls on mobile, growing toward the bottom ,  the thumbnail keeps its space */
+    /* bigger controls on mobile, growing toward the bottom, the thumbnail keeps its space */
     .controls { gap: 6px; }
     .controls button { width: 40px; height: 40px; }
     .controls button svg { width: 46%; height: 46%; }
     .speed-btn { font-size: 16px; }
-    /* aspect-ratio instead of vh ,  100vh on mobile browsers shifts every time
+    /* aspect-ratio instead of vh, 100vh on mobile browsers shifts every time
        the address bar hides/shows while scrolling, which was making this jump
        around. width doesn't move on scroll, so tying height to width via
        aspect-ratio keeps this genuinely fixed. */
@@ -339,13 +339,13 @@
        precisely against the longest project description once fonts/layout settle */
     .project-meta #projDesc { min-height: 78px; margin-top: 6px; }
     .controls-row { margin-top: auto; padding-top: 16px; }
-    /* contact bar stays one row on mobile too ,  name left, links pinned right */
+    /* contact bar stays one row on mobile too, name left, links pinned right */
     .contact-bar { padding: 14px 4vw; }
     .contact-bar .name { font-size: 16px; }
     .contact-bar .links { gap: 16px; }
     .contact-bar a { font-size: 14px; }
   }
-  /* showcase ,  side-scrolling screenshot strip inside the project frame */
+  /* showcase, side-scrolling screenshot strip inside the project frame */
   .project-frame { position: relative; }
   .showcase-track {
     position: absolute;
@@ -366,7 +366,7 @@
     cursor: pointer;
   }
 
-  /* detail overlay ,  click a showcase image to inspect it */
+  /* detail overlay, click a showcase image to inspect it */
   .detail-overlay {
     position: fixed;
     inset: 0;
@@ -598,7 +598,7 @@
   </div>
 </div>
 
-  <!-- detail overlay ,  click a showcase image to inspect it -->
+  <!-- detail overlay, click a showcase image to inspect it -->
   <div class="detail-overlay" id="detailOverlay">
     <div class="detail-square">
       <button class="overlay-close" id="overlayClose" aria-label="close">×</button>
@@ -661,7 +661,7 @@
     vanishingBox.setAttribute('height', INNER_SIZE);
     svg.appendChild(vanishingBox);
 
-    // slow dvd-style drift for the vanishing box ,  keeps motion on mobile (no cursor)
+    // slow dvd-style drift for the vanishing box, keeps motion on mobile (no cursor)
     let driftX = 0, driftY = 0, driftVX = 0, driftVY = 0;
     let userTargeting = false;
 
@@ -702,7 +702,7 @@
     }
     resize();
     // keep the tunnel in sync with its panel whenever it resizes (equalizer,
-    // font swaps, orientation) ,  prevents the vanishing box from stretching
+    // font swaps, orientation), prevents the vanishing box from stretching
     const panelResize = new ResizeObserver(resize);
     panelResize.observe(tunnelPanel);
 
@@ -811,26 +811,26 @@
     /* ===== carousel ===== */
     // images/links are placeholders until real assets and urls exist
     const projects = [
-      { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime ,  reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
-      { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes ,  built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
-      { title: 'ping', desc: 'broadcast announcements for classrooms and workplaces', link: 'https://github.com/biiviid/Ping', images: ['PingSS/Ping1.jpg', 'PingSS/Ping2.jpg', 'PingSS/Ping4.jpg', 'PingSS/Ping5.jpg', 'PingSS/Ping6.png'], detail: 'a broadcast and announcement system for groups of any size, from a classroom to an entire university to a workforce ,  built for seamless delivery with a focus on widgets' },
-      { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor ,  detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
-      { title: 'cutlog', desc: 'calorie and protein tracker', link: 'https://github.com/biiviid/CutLog', images: ['cutSS/cut1.png', 'cutSS/cut2.jpg', 'cutSS/cut3.jpg', 'cutSS/cut4.jpg', 'cutSS/cut5.jpg'], detail: 'a simple calorie and protein tracker, loosely based on common knowledge and dfa food information ,  mostly personal, built to help with a calorie deficit' },
-      { title: 'cubechron', desc: 'a basic speedcubing timer', link: 'https://github.com/biiviid/CubeChron', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, also called basics ,  the period is part of the name, it stands for back to the basics, no unnecessary features' },
-      { title: "bob's studio", desc: 'offline agentic ide running a local model', link: 'https://github.com/biiviid/bob_studio', images: ['bobSS/bob1.png', 'bobSS/bob2.png'], detail: "an agentic ide that runs entirely on a locally hosted model, qwen2.5-coder:3b via ollama ,  an offline agentic ide built for the laughs and the party trick points" }
+      { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime, reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
+      { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes, built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
+      { title: 'ping', desc: 'broadcast announcements for classrooms and workplaces', link: 'https://github.com/biiviid/Ping', images: ['PingSS/Ping1.jpg', 'PingSS/Ping2.jpg', 'PingSS/Ping4.jpg', 'PingSS/Ping5.jpg', 'PingSS/Ping6.png'], detail: 'a broadcast and announcement system for groups of any size, from a classroom to an entire university to a workforce, built for seamless delivery with a focus on widgets' },
+      { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor, detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
+      { title: 'cutlog', desc: 'calorie and protein tracker', link: 'https://github.com/biiviid/CutLog', images: ['cutSS/cut1.png', 'cutSS/cut2.jpg', 'cutSS/cut3.jpg', 'cutSS/cut4.jpg', 'cutSS/cut5.jpg'], detail: 'a simple calorie and protein tracker, loosely based on common knowledge and dfa food information, mostly personal, built to help with a calorie deficit' },
+      { title: 'cubechron', desc: 'a basic speedcubing timer', link: 'https://github.com/biiviid/CubeChron', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, also called basics, the period is part of the name, it stands for back to the basics, no unnecessary features' },
+      { title: "bob's studio", desc: 'offline agentic ide running a local model', link: 'https://github.com/biiviid/bob_studio', images: ['bobSS/bob1.png', 'bobSS/bob2.png'], detail: "an agentic ide that runs entirely on a locally hosted model, qwen2.5-coder:3b via ollama, an offline agentic ide built for the laughs and the party trick points" }
     ];
     // exposed so the mobile equalizer script (bottom of page) can measure the
     // longest description's actual wrapped line count instead of guessing one
     window.__PROJECT_DESCS__ = projects.map(function (p) { return p.desc; });
 
     let idx = 0, speed = 1, progress = 0;
-    let manuallyPaused = false; // manual play/pause ,  always wins (brief section 5)
+    let manuallyPaused = false; // manual play/pause, always wins (brief section 5)
     let isHovering = false;     // hover-pause convenience (desktop)
     let touchHold = false;      // tap-and-hold pause (mobile)
     let suppressClick = false;  // a held release is not a tap
     let holdTimer = null;
-    let overlayOpen = false;    // detail overlay open ,  freezes scroll + auto-advance
-    let scrubbing = false;      // seekbar drag ,  freezes auto-advance while held
+    let overlayOpen = false;    // detail overlay open, freezes scroll + auto-advance
+    let scrubbing = false;      // seekbar drag, freezes auto-advance while held
 
     const durationTicks = 130; // 13s at 1x (100ms per tick), 6.5s at 2x
     const DURATION_MS = durationTicks * 100;
@@ -849,7 +849,7 @@
     const showcase = document.getElementById('projectShowcase');
     let trackWidth = 0; // measured once the strip images load
     let frameWidth = 0;  // the strip's visible window (the frame's inner width)
-    // combined pause state ,  manual pause wins until manually released;
+    // combined pause state, manual pause wins until manually released;
     // touch-hold only pauses when not manually paused; overlay + scrub freeze all
     function isPlaying() {
       return !manuallyPaused && !isHovering && !touchHold && !overlayOpen && !scrubbing;
@@ -897,7 +897,7 @@
           showcase.appendChild(img);
         });
         measureTrack();
-        // images may still be loading ,  re-measure when each one is ready
+        // images may still be loading, re-measure when each one is ready
         Array.prototype.forEach.call(showcase.querySelectorAll('img'), function (img) {
           if (img.complete) measureTrack();
           else img.addEventListener('load', measureTrack);
@@ -931,7 +931,7 @@
       render();
     }
 
-    // auto-advance + showcase scroll ,  one smooth rAF loop (manual controls
+    // auto-advance + showcase scroll, one smooth rAF loop (manual controls
     // and seekbar scrubbing pause it; always runs so the strip never sits still)
     let lastFrameTs = 0;
     function carouselLoop(ts) {
@@ -940,7 +940,7 @@
         if (isPlaying()) {
           progress += (100 / DURATION_MS) * speed * dt * 1000; // dt is in seconds, DURATION_MS in ms
           if (progress >= 100) {
-            goTo(idx + 1); // last image's tail exits ,  loop + next project
+            goTo(idx + 1); // last image's tail exits, loop + next project
           } else {
             updateSeek();
           }
@@ -951,7 +951,7 @@
     }
     requestAnimationFrame(carouselLoop);
 
-    // interactive seekbar ,  hold the dot (or the track) and drag to scrub the strip
+    // interactive seekbar, hold the dot (or the track) and drag to scrub the strip
     let dragging = false;
     function pointerProgress(clientX) {
       const r = seekTrack.getBoundingClientRect();
@@ -997,7 +997,7 @@
       speedBtn.classList.toggle('active', speed === 2);
     });
 
-    // hover-pause (desktop only ,  no hover on touch)
+    // hover-pause (desktop only, no hover on touch)
     // hover no longer pauses anything, it was disruptive to the scroll
 
     // tap-and-hold pauses, release resumes (mobile equivalent of hover-pause)
@@ -1030,7 +1030,7 @@
       }
     });
 
-    // detail overlay ,  click a showcase image to pause everything and inspect it
+    // detail overlay, click a showcase image to pause everything and inspect it
     const overlay = document.getElementById('detailOverlay');
     const overlayImg = document.getElementById('overlayImg');
     const overlayTitle = document.getElementById('overlayTitle');
@@ -1126,7 +1126,7 @@
 
   /* ===== project-panel tunnel =====
      same perspective grid as the left panel, but a really translucent gray on
-     the dark side ,  sits above the panel background, behind all content */
+     the dark side, sits above the panel background, behind all content */
   (function () {
     'use strict';
     const panel = document.getElementById('projectPanel');
@@ -1169,7 +1169,7 @@
     let W = 0, H = 0;
     let targetVX = 0, targetVY = 0, curVX = 0, curVY = 0;
 
-    // slow dvd-style drift for the vanishing box ,  keeps motion on mobile (no cursor)
+    // slow dvd-style drift for the vanishing box, keeps motion on mobile (no cursor)
     let driftX = 0, driftY = 0, driftVX = 0, driftVY = 0;
     let userTargeting = false;
 
@@ -1210,7 +1210,7 @@
     }
     resize();
     // keep the tunnel in sync with its panel whenever it resizes (equalizer,
-    // font swaps, orientation) ,  prevents the vanishing box from stretching
+    // font swaps, orientation), prevents the vanishing box from stretching
     const panelResize = new ResizeObserver(resize);
     panelResize.observe(panel);
 
@@ -1310,7 +1310,7 @@
   })();
 </script>
 <script>
-  /* option C equalizer ,  stacked/mobile only: the right panel's height always
+  /* option C equalizer, stacked/mobile only: the right panel's height always
      matches the left panel's actual size, so both panels share equal space */
   (function () {
     'use strict';
@@ -1359,7 +1359,7 @@
       if (!left || !right) return;
       if (mq.matches) {
         right.style.minHeight = left.offsetHeight + 'px';
-        // thumbnail stays a fixed size (set in CSS via clamp()) ,  no more JS
+        // thumbnail stays a fixed size (set in CSS via clamp()), no more JS
         // stretching it to soak up leftover space
         if (frame) {
           frame.style.flex = '';
