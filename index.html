@@ -509,9 +509,31 @@
   .overlay-nav:hover { background: rgba(255, 255, 255, 0.24); }
   .overlay-prev { left: 10px; }
   .overlay-next { right: 10px; }
-  @media (max-width: 700px) {
-    .detail-square { flex-direction: column; }
-    .overlay-info { width: 100%; min-width: 0; }
+  @media (max-width: 860px) {
+    /* stack the overlay at the same breakpoint as the page: photo on top,
+       info + github link below, so the image never covers the info */
+    .detail-square {
+      flex-direction: column;
+      height: auto;
+      max-height: 88vh;
+      width: 94vw;
+    }
+    .overlay-photo {
+      flex: none;
+      height: 50vh;
+      max-height: 50vh;
+      min-height: 0;
+    }
+    .overlay-photo img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .overlay-info {
+      width: 100%;
+      min-width: 0;
+      flex: 1;
+      min-height: 0;
+    }
   }
 </style>
 </head><body>
