@@ -3,146 +3,96 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="try ping’s deadline map, tasks and reminders. ping for android works offline and supports shared groups.">
+  <meta name="description" content="ping is a quiet android planner for tasks, reminders, and shared deadlines.">
   <title>ping for android</title>
   <link rel="icon" href="assets/icon.webp">
   <link rel="stylesheet" href="assets/site.css">
-  <link rel="stylesheet" href="assets/demo.css">
-  <script src="assets/demo.js" defer></script>
 </head>
 <body>
-<div class="demo-shell">
-  <header class="demo-header">
-    <a class="brand" href="./"><img src="assets/icon.webp" alt="" width="32" height="32">ping</a>
-    <div class="header-actions">
-      <a class="text-action" href="#install"><span>get ping</span></a>
-    </div>
+  <header class="shell mast landing-mast">
+    <a class="mark" href="./"><img src="assets/icon.webp" alt="" width="32" height="32">ping</a>
+    <a href="#install">get ping</a>
   </header>
 
   <main>
-    <div id="ping-view" class="workspace">
-      <section class="map-pane" aria-label="deadline map">
-        <div class="clearing">
-          <h1>focus on what matters.</h1>
-          <p>sample workspace</p>
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <div class="thoughts">
+          <span>send the outline</span>
+          <span>bring the workshop notes</span>
+          <span>rehearse the last slide</span>
+          <span>return the library book</span>
+          <span>share the first draft</span>
+          <span>pick up the prints</span>
+          <span>review the sketches</span>
+          <span>water the plants</span>
+          <span>email the group</span>
+          <span>check the room number</span>
+          <span>finish the poster</span>
+          <span>bring the notes</span>
         </div>
-        <div id="map" class="map">
-          <div class="thoughts" aria-hidden="true">
-            <span>send the outline</span><span>bring the notes</span>
-            <span>rehearse the last slide</span><span>return the library book</span>
-            <span>send the outline</span><span>bring the notes</span>
-          </div>
-          <div class="orbits" id="orbits" aria-hidden="true">
-            <i></i><i></i><i></i><i></i>
-          </div>
-          <div id="signals" class="signals"></div>
-          <div class="empty-origin" id="empty-origin" aria-hidden="true" hidden></div>
-          <button id="origin" class="signal origin" type="button" aria-pressed="false"><span></span></button>
-          <div id="callout" class="callout" hidden></div>
+        <div class="hero-rings">
+          <i></i><i></i><i></i><i></i><i></i>
         </div>
-        <div class="map-actions">
-          <div class="map-toolbar" role="group" aria-label="map controls">
-            <button class="text-action" id="zoom-out" type="button"><span>zoom out</span></button>
-            <output id="zoom-level" aria-label="map zoom">1.0×</output>
-            <button class="text-action" id="zoom-in" type="button"><span>zoom in</span></button>
-            <button class="text-action" id="reset-view" type="button"><span>reset view</span></button>
-            <button class="help-action" id="map-help" type="button" aria-label="how the map works"><span>?</span></button>
-          </div>
-          <button class="text-action" id="add" type="button"><span>add</span></button>
+        <div class="hero-signal"></div>
+      </div>
+      <div class="shell hero-content">
+        <h1>a quieter view<br>of what’s due.</h1>
+        <p>ping brings your tasks, reminders, and shared deadlines into one quiet android planner.</p>
+        <a class="primary-link" href="#install">get ping for android</a>
+        <p class="hero-availability">invite-only android pilot</p>
+      </div>
+    </section>
+
+    <div class="shell">
+      <section class="feature map-feature" aria-labelledby="map-heading">
+        <div class="feature-copy">
+          <h2 id="map-heading">see what’s getting closer.</h2>
+          <p>tasks move toward the center of the map as their deadlines approach. a coral count shows what’s due. reminders stay on the outer ring until you handle them.</p>
         </div>
-        <p id="map-empty" class="muted" hidden>nothing active on the map</p>
+        <figure class="map-image">
+          <img src="assets/02-ping-map.png" width="1080" height="2280" loading="lazy" alt="a close-up of the ping map with one due task in coral and a hollow reminder near the outer ring">
+        </figure>
       </section>
 
-      <div class="reading">
-        <form class="search" id="search-form" role="search" hidden>
-          <label class="sr-only" for="search">search tasks and reminders</label>
-          <input id="search" type="search" placeholder="search tasks and reminders">
-        </form>
-        <button id="open-search" class="text-action" type="button" aria-controls="search-form" aria-expanded="false"><span>search</span></button>
-        <section id="urgent-section" aria-labelledby="urgent">
-          <h2 id="urgent" tabindex="-1">urgent</h2>
-          <ul id="urgent-items" class="items"></ul>
-        </section>
-        <section aria-labelledby="feed">
-          <h2 id="feed">feed</h2>
-          <ul id="feed-items" class="items"></ul>
-          <p id="empty-feed" class="muted" hidden>nothing here yet</p>
-        </section>
-        <button id="history-toggle" class="text-action quiet" type="button" aria-expanded="false" aria-controls="history-items" hidden><span>history</span></button>
-        <ul id="history-items" class="items" aria-label="history" hidden></ul>
-      </div>
+      <section class="feature widget-feature" aria-labelledby="widget-heading">
+        <div class="feature-copy">
+          <h2 id="widget-heading">keep one thing in sight.</h2>
+          <p>put a task or reminder on your android home screen and cycle through active items from the widget.</p>
+        </div>
+        <figure class="widget-image">
+          <img src="assets/04-widget.png" width="698" height="534" loading="lazy" alt="a close-up of the ping widget showing a project outline task">
+        </figure>
+      </section>
+
+      <section class="feature notes" aria-label="working with ping">
+        <div class="feature-copy">
+          <h2>plan together.</h2>
+          <p>keep personal work in your own space. join a group by code or invite for the tasks you share.</p>
+        </div>
+        <div class="feature-copy">
+          <h2>keep going offline.</h2>
+          <p>after signing in online, you can read previously synced work and save changes. ping syncs when you reconnect.</p>
+        </div>
+      </section>
+
+      <section class="install" id="install" aria-labelledby="install-title">
+        <h2 id="install-title">get ping for android.</h2>
+        <p>invite-only pilot for android 10 and newer.</p>
+        <div class="links install-links">
+          <a class="primary-link" href="mailto:bivid.ping@gmail.com?subject=ping%20android%20pilot">request an invite <span aria-hidden="true">↗</span></a>
+          <a href="https://appdistribution.firebase.google.com/testerapps/1:1076495707089:android:6fc173bcfd5cbc4f798ef0/releases/53lmapqs69qog">open tester page <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
     </div>
-
-    <section id="groups-view" class="groups-view" aria-labelledby="groups-heading" hidden>
-      <h2 id="groups-heading">groups</h2>
-      <div id="group-items"></div>
-    </section>
-
-    <div id="feedback" class="feedback" hidden>
-      <span id="feedback-text" role="status"></span>
-      <button id="undo" class="text-action" type="button"><span>undo</span></button>
-    </div>
-
-    <nav class="demo-nav" aria-label="demo views">
-      <button class="view-action" id="show-ping" type="button" aria-current="page"><span>ping</span></button>
-      <button class="view-action" id="show-groups" type="button"><span>groups</span></button>
-    </nav>
-
-    <noscript><p>enable javascript to try the interactive demo. <a href="#install">get ping for android.</a></p></noscript>
-
-    <section class="install" id="install" aria-labelledby="install-title">
-      <div>
-        <h2 id="install-title">ping for android</h2>
-        <p>android 10 and up · invite-only pilot</p>
-      </div>
-      <div class="install-actions">
-        <a class="text-action" href="mailto:bivid.ping@gmail.com?subject=Ping%20Android%20pilot"><span>request an invite</span></a>
-        <a class="text-action" href="https://appdistribution.firebase.google.com/testerapps/1:1076495707089:android:6fc173bcfd5cbc4f798ef0/releases/53lmapqs69qog"><span>open tester page</span></a>
-      </div>
-    </section>
   </main>
 
-  <footer class="demo-footer">
+  <footer class="shell">
     <a href="/">bivid.site</a>
-    <nav aria-label="help and policies"><a href="support/">support</a><a href="privacy/">privacy</a></nav>
+    <nav class="links" aria-label="help and policies">
+      <a href="support/">support</a>
+      <a href="privacy/">privacy</a>
+    </nav>
   </footer>
-</div>
-
-<dialog id="details" aria-labelledby="details-title">
-  <form method="dialog"><button class="text-action" type="submit"><span>back</span></button></form>
-  <p id="details-meta" class="muted"></p>
-  <h2 id="details-title"></h2>
-  <p id="details-body"></p>
-  <button class="text-action" id="details-action" type="button"><span></span></button>
-</dialog>
-
-<dialog id="composer" aria-labelledby="composer-title">
-  <form id="compose-form">
-    <h2 id="composer-title">add</h2>
-    <label for="item-title">title</label>
-    <input id="item-title" name="title" maxlength="100" required>
-    <label for="item-notes">notes <span class="muted">(optional)</span></label>
-    <textarea id="item-notes" name="notes" rows="3" maxlength="500"></textarea>
-    <label for="item-group">space</label>
-    <select id="item-group" name="group">
-      <option value="personal">personal</option>
-      <option value="design studio">design studio</option>
-    </select>
-    <label for="item-due">deadline <span class="muted">(optional)</span></label>
-    <input id="item-due" name="due" type="datetime-local">
-    <div class="dialog-actions">
-      <button class="text-action quiet" type="button" id="cancel-add"><span>cancel</span></button>
-      <button class="text-action" type="submit" id="create"><span>add reminder</span></button>
-    </div>
-  </form>
-</dialog>
-
-<dialog id="help" aria-labelledby="help-title">
-  <form method="dialog"><button class="text-action" type="submit"><span>back</span></button></form>
-  <h2 id="help-title">the map</h2>
-  <p>tasks move toward the center as their deadlines approach. the coral count opens the urgent section. reminders stay on the outer ring.</p>
-  <p>tap a dot to see what it is. tap it again or tap empty space to close it.</p>
-  <p>changes in this sample workspace last until you reload.</p>
-</dialog>
 </body>
 </html>
