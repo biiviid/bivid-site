@@ -814,7 +814,14 @@
     const projects = [
       { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime, reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
       { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes, built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
-      { title: 'ping', desc: 'broadcast announcements for classrooms and workplaces', link: 'https://github.com/biiviid/Ping', images: ['PingSS/Ping1.jpg', 'PingSS/Ping2.jpg', 'PingSS/Ping4.jpg', 'PingSS/Ping5.jpg', 'PingSS/Ping6.png'], detail: 'a broadcast and announcement system for groups of any size, from a classroom to an entire university to a workforce, built for seamless delivery with a focus on widgets' },
+      {
+        title: 'ping',
+        desc: 'a quiet android planner for tasks, reminders, and shared deadlines',
+        link: '/ping/',
+        linkLabel: 'open ping',
+        images: ['ping/assets/02-ping-map.png', 'ping/assets/04-widget.png'],
+        detail: 'tasks move toward the center of the map as deadlines approach. keep personal reminders and shared work together, save changes offline, and put one item on your home screen with the widget.'
+      },
       { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor, detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
       { title: 'cutlog', desc: 'calorie and protein tracker', link: 'https://github.com/biiviid/CutLog', images: ['cutSS/cut1.png', 'cutSS/cut2.jpg', 'cutSS/cut3.jpg', 'cutSS/cut4.jpg', 'cutSS/cut5.jpg'], detail: 'a simple calorie and protein tracker, loosely based on common knowledge and dfa food information, mostly personal, built to help with a calorie deficit' },
       { title: 'basics.', desc: 'a basic speedcubing timer', link: 'https://github.com/biiviid/CubeChron', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, the period in the name stands for back to the basics, no unnecessary features' },
@@ -1052,7 +1059,10 @@
       overlayImgIdx = Math.max(0, all.indexOf(clickedImg));
       overlayTitle.textContent = projects[idx].title;
       overlayDetail.textContent = projects[idx].detail || projects[idx].desc;
-      if (overlayGithub) overlayGithub.href = projects[idx].link || '#';
+      if (overlayGithub) {
+        overlayGithub.href = projects[idx].link || '#';
+        overlayGithub.textContent = '-> ' + (projects[idx].linkLabel || 'github');
+      }
       showOverlayImage(overlayImgIdx);
       overlay.classList.add('open');
       overlayOpen = true;
