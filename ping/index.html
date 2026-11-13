@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Try Ping’s deadline map, tasks and reminders. Ping for Android works offline and supports shared groups.">
-  <title>Ping for Android</title>
+  <meta name="description" content="try ping’s deadline map, tasks and reminders. ping for android works offline and supports shared groups.">
+  <title>ping for android</title>
   <link rel="icon" href="assets/icon.webp">
   <link rel="stylesheet" href="assets/site.css">
   <link rel="stylesheet" href="assets/demo.css">
@@ -13,24 +13,25 @@
 <body>
 <div class="demo-shell">
   <header class="demo-header">
-    <h1 class="brand"><img src="assets/icon.webp" alt="" width="32" height="32">ping</h1>
+    <a class="brand" href="./"><img src="assets/icon.webp" alt="" width="32" height="32">ping</a>
     <div class="header-actions">
-      <span class="demo-label">interactive demo</span>
       <a class="text-action" href="#install"><span>get ping</span></a>
     </div>
   </header>
 
   <main>
     <div id="ping-view" class="workspace">
-      <section class="map-pane" aria-label="Deadline map">
-        <div class="map-toolbar" role="group" aria-label="Map controls">
-          <button class="text-action" id="zoom-out" type="button"><span>zoom out</span></button>
-          <output id="zoom-level" aria-label="Map zoom">1.0×</output>
-          <button class="text-action" id="zoom-in" type="button"><span>zoom in</span></button>
-          <button class="text-action" id="reset-view" type="button"><span>reset view</span></button>
-          <button class="help-action" id="map-help" type="button" aria-label="How the map works"><span>?</span></button>
+      <section class="map-pane" aria-label="deadline map">
+        <div class="clearing">
+          <h1>focus on what matters.</h1>
+          <p>sample workspace</p>
         </div>
         <div id="map" class="map">
+          <div class="thoughts" aria-hidden="true">
+            <span>send the outline</span><span>bring the notes</span>
+            <span>rehearse the last slide</span><span>return the library book</span>
+            <span>send the outline</span><span>bring the notes</span>
+          </div>
           <div class="orbits" id="orbits" aria-hidden="true">
             <i></i><i></i><i></i><i></i>
           </div>
@@ -39,15 +40,22 @@
           <button id="origin" class="signal origin" type="button" aria-pressed="false"><span></span></button>
           <div id="callout" class="callout" hidden></div>
         </div>
-        <div class="add-row">
-          <p id="map-empty" class="muted" hidden>nothing active on the map</p>
+        <div class="map-actions">
+          <div class="map-toolbar" role="group" aria-label="map controls">
+            <button class="text-action" id="zoom-out" type="button"><span>zoom out</span></button>
+            <output id="zoom-level" aria-label="map zoom">1.0×</output>
+            <button class="text-action" id="zoom-in" type="button"><span>zoom in</span></button>
+            <button class="text-action" id="reset-view" type="button"><span>reset view</span></button>
+            <button class="help-action" id="map-help" type="button" aria-label="how the map works"><span>?</span></button>
+          </div>
           <button class="text-action" id="add" type="button"><span>add</span></button>
         </div>
+        <p id="map-empty" class="muted" hidden>nothing active on the map</p>
       </section>
 
       <div class="reading">
         <form class="search" id="search-form" role="search" hidden>
-          <label class="sr-only" for="search">Search tasks and reminders</label>
+          <label class="sr-only" for="search">search tasks and reminders</label>
           <input id="search" type="search" placeholder="search tasks and reminders">
         </form>
         <button id="open-search" class="text-action" type="button" aria-controls="search-form" aria-expanded="false"><span>search</span></button>
@@ -61,7 +69,7 @@
           <p id="empty-feed" class="muted" hidden>nothing here yet</p>
         </section>
         <button id="history-toggle" class="text-action quiet" type="button" aria-expanded="false" aria-controls="history-items" hidden><span>history</span></button>
-        <ul id="history-items" class="items" aria-label="History" hidden></ul>
+        <ul id="history-items" class="items" aria-label="history" hidden></ul>
       </div>
     </div>
 
@@ -75,17 +83,17 @@
       <button id="undo" class="text-action" type="button"><span>undo</span></button>
     </div>
 
-    <nav class="demo-nav" aria-label="Demo views">
+    <nav class="demo-nav" aria-label="demo views">
       <button class="view-action" id="show-ping" type="button" aria-current="page"><span>ping</span></button>
       <button class="view-action" id="show-groups" type="button"><span>groups</span></button>
     </nav>
 
-    <noscript><p>Enable JavaScript to try the interactive demo. <a href="#install">Get Ping for Android.</a></p></noscript>
+    <noscript><p>enable javascript to try the interactive demo. <a href="#install">get ping for android.</a></p></noscript>
 
     <section class="install" id="install" aria-labelledby="install-title">
       <div>
         <h2 id="install-title">ping for android</h2>
-        <p>Android 10 and up · invite-only pilot</p>
+        <p>android 10 and up · invite-only pilot</p>
       </div>
       <div class="install-actions">
         <a class="text-action" href="mailto:bivid.ping@gmail.com?subject=Ping%20Android%20pilot"><span>request an invite</span></a>
@@ -96,7 +104,7 @@
 
   <footer class="demo-footer">
     <a href="/">bivid.site</a>
-    <nav aria-label="Help and policies"><a href="support/">support</a><a href="privacy/">privacy</a></nav>
+    <nav aria-label="help and policies"><a href="support/">support</a><a href="privacy/">privacy</a></nav>
   </footer>
 </div>
 
@@ -132,9 +140,9 @@
 <dialog id="help" aria-labelledby="help-title">
   <form method="dialog"><button class="text-action" type="submit"><span>back</span></button></form>
   <h2 id="help-title">the map</h2>
-  <p>Tasks move toward the center as their deadlines approach. The coral count opens the urgent section. Reminders stay on the outer ring.</p>
-  <p>Tap a dot to see what it is. Tap it again or tap empty space to close it.</p>
-  <p>This demo uses sample items. Changes last until you reload.</p>
+  <p>tasks move toward the center as their deadlines approach. the coral count opens the urgent section. reminders stay on the outer ring.</p>
+  <p>tap a dot to see what it is. tap it again or tap empty space to close it.</p>
+  <p>changes in this sample workspace last until you reload.</p>
 </dialog>
 </body>
 </html>

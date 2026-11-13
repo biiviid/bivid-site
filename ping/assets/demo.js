@@ -11,15 +11,15 @@ const hour = 3_600_000;
 const start = Date.now();
 const items = [
   { id: 1, title: "send the project outline", group: "design studio", due: start - hour,
-    notes: "Add the final sketches and share the draft with the group.", angle: 0 },
+    notes: "add the final sketches and share the draft with the group.", angle: 0 },
   { id: 2, title: "review the presentation", group: "personal", due: start + 5 * hour,
-    notes: "Check the opening slides and rehearse the last section.", angle: -0.85 },
+    notes: "check the opening slides and rehearse the last section.", angle: -0.85 },
   { id: 3, title: "bring the workshop notes", group: "design studio", due: null,
-    notes: "Bring the notes from our first session to the next meeting.", angle: 0.27 },
+    notes: "bring the notes from our first session to the next meeting.", angle: 0.27 },
   { id: 4, title: "send the final poster", group: "design studio", due: start + 96 * hour,
-    notes: "Export a PDF and share it with the workshop group.", angle: 2.13 },
+    notes: "export a pdf and share it with the workshop group.", angle: 2.13 },
   { id: 5, title: "return the library book", group: "personal", due: null,
-    notes: "The book is in the front pocket of my bag.", angle: -2.48 },
+    notes: "the book is in the front pocket of my bag.", angle: -2.48 },
 ];
 const dates = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
 const marks = new Map();
@@ -34,7 +34,7 @@ let lastChange = null;
 const isDue = item => item.due !== null && item.due <= now;
 const kind = item => item.due === null ? "reminder" : "task";
 const outcome = item => item.due === null ? "mark handled" : "mark complete";
-const meta = item => [kind(item), item.group, item.due === null ? "no deadline" : "due " + dates.format(item.due)].join(" · ");
+const meta = item => [kind(item), item.group, item.due === null ? "no deadline" : "due " + dates.format(item.due).toLocaleLowerCase()].join(" · ");
 const active = () => items.filter(item => !item.done);
 const urgent = () => active().filter(isDue).sort((a, b) => a.due - b.due || a.id - b.id);
 
@@ -75,7 +75,7 @@ function showCallout() {
   if (callout.dataset.id !== String(item.id)) {
     const context = document.createElement("p");
     context.className = "muted";
-    context.textContent = item.group + " · " + kind(item);
+    context.textContent = meta(item);
     callout.replaceChildren(context, action(item.title + " ›", () => openItem(item)));
     callout.dataset.id = item.id;
   }
@@ -315,7 +315,7 @@ get("compose-form").addEventListener("submit", event => {
   const titleInput = get("item-title");
   const title = titleInput.value.trim();
   if (!title) {
-    titleInput.setCustomValidity("Enter a title.");
+    titleInput.setCustomValidity("enter a title.");
     titleInput.reportValidity();
     return;
   }
