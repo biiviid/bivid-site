@@ -367,6 +367,19 @@
     cursor: pointer;
   }
 
+  .showcase-track.showcase-pair {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 10px;
+    background: #000;
+  }
+  .showcase-track.showcase-pair img {
+    width: 100%;
+    min-height: 0;
+    object-fit: contain;
+  }
+
   /* detail overlay, click a showcase image to inspect it */
   .detail-overlay {
     position: fixed;
@@ -819,7 +832,8 @@
         desc: 'a quiet android planner for tasks, reminders, and shared deadlines',
         link: '/ping/',
         linkLabel: 'open ping',
-        images: ['ping/assets/ping-phone.png', 'ping/assets/ping-widget-home.webp?v=950a938a84'],
+        showImagePair: true,
+        images: ['PingSS/deadline-map.webp', 'PingSS/home-screen-widget.webp'],
         detail: 'tasks move toward the center of the map as deadlines approach. keep personal reminders and shared work together, save changes offline, and put one item on your home screen with the widget.'
       },
       { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor, detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
@@ -896,6 +910,7 @@
       // build the side-scrolling screenshot strip for this project
       const imgs = projects[idx].images || [];
       showcase.innerHTML = '';
+      showcase.classList.toggle('showcase-pair', projects[idx].showImagePair === true);
       if (imgs.length) {
         projectImg.style.display = 'none';
         imgs.forEach(function (src) {
