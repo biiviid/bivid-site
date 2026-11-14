@@ -164,13 +164,6 @@
   justify-self: center;
 }
 
-.widget-image { aspect-ratio: 698 / 225; }
-.widget-image img {
-  height: 100%;
-  object-fit: cover;
-  object-position: center 21%;
-}
-
 .notes h2 {
   font-size: clamp(1.6rem, 3.5vw, 2.7rem);
 }
