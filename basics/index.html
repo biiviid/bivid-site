@@ -11,43 +11,62 @@
 <meta property="og:description" content="an offline android timer for 3×3 speedcubing.">
 <meta name="theme-color" content="#131313">
 <link rel="icon" href="assets/icon.png">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <title>basics. — offline speedcubing timer</title>
-<script src="site.js?v=3" defer></script>
 </head>
 <body>
 <header class="shell nav">
   <a class="wordmark" href="#" aria-label="basics. home"><img class="logo" src="assets/icon.png" width="24" height="24" alt="">basics.</a>
-  <nav aria-label="main navigation"><a href="#app">the app</a><a class="repo" href="https://github.com/biiviid/basics">github</a></nav>
+  <nav aria-label="main navigation"><a href="#app">the app</a><a href="https://github.com/biiviid/basics">github</a></nav>
 </header>
 <main>
   <section class="shell hero" aria-labelledby="intro">
     <div class="intro">
       <h1 id="intro">basics.</h1>
-      <p class="lead">an offline 3×3 timer for android.</p>
+      <p class="lead">an offline 3×3 speedcubing timer for android.</p>
+      <p class="origin">i built basics. to get back to what i enjoy about speedcubing: scramble, solve, repeat.</p>
     </div>
-    <div class="instrument">
-      <div class="instrument-head"><span>timer demo</span></div>
-      <div class="scramble"><p>R U R' F2 D L2 U' B2<br>R2 F D' B U2 L F' R</p></div>
-      <div class="readout" aria-hidden="true">
-        <span>0</span><b>:</b><span>0</span><span>0</span><b>.</b><span>0</span><span>0</span><span>0</span>
+    <figure class="timer-shot">
+      <div class="shot-frame">
+        <img src="assets/timer.png" width="1080" height="2400" alt="the timer screen with a scramble, a solve time, and a cube diagram">
       </div>
-      <div id="timer-status" class="sr-only" role="status"></div>
-      <div class="instrument-foot"><button id="timer-button" type="button" disabled>start timer</button><button id="reset-button" type="button" disabled>reset</button></div>
-    </div>
+      <figcaption>
+        <strong>timer</strong>
+        <p>practice with 3×3 scrambles and optional 15-second inspection.</p>
+      </figcaption>
+    </figure>
   </section>
-  <section id="app" class="showcase" aria-label="app screens">
-    <div class="shell gallery">
-      <div class="device-stage">
-        <div class="device"><img id="app-shot" src="assets/timer.png" width="1080" height="2400" alt="basics. android timer showing a scramble, solve time, and cube diagram" loading="lazy"></div>
-      </div>
-      <div class="gallery-content">
-        <div class="gallery-controls" aria-label="app screenshots">
-          <button type="button" data-panel="timer" aria-pressed="true">timer</button>
-          <button type="button" data-panel="history" aria-pressed="false">history</button>
-          <button type="button" data-panel="stats" aria-pressed="false">stats</button>
-          <button type="button" data-panel="charts" aria-pressed="false">charts</button>
-        </div>
+  <section id="app" class="showcase" aria-labelledby="after-the-solve">
+    <div class="shell">
+      <h2 id="after-the-solve">after the solve</h2>
+      <div class="gallery">
+        <figure>
+          <div class="shot-frame">
+            <img src="assets/history.png" width="1080" height="2400" alt="a session's solve history with individual times and scrambles" loading="lazy">
+          </div>
+          <figcaption>
+            <strong>history</strong>
+            <p>revisit your times, scrambles, and penalties.</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="shot-frame">
+            <img src="assets/stats.png" width="1080" height="2400" alt="session statistics with best times and rolling averages" loading="lazy">
+          </div>
+          <figcaption>
+            <strong>stats</strong>
+            <p>check personal bests and rolling averages like ao5 and ao12.</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="shot-frame">
+            <img src="assets/charts.png" width="1080" height="2400" alt="a solve progression line chart and a distribution chart" loading="lazy">
+          </div>
+          <figcaption>
+            <strong>charts</strong>
+            <p>see how your times change and where most solves land.</p>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
