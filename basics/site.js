@@ -33,8 +33,8 @@ function tick(now) {
 function finish(elapsed) {
   cancelAnimationFrame(frame);
   startedAt = null;
-  timerButton.firstChild.nodeValue = "Start timer ";
-  timerStatus.textContent = `Stopped at ${renderTimer(elapsed)}.`;
+  timerButton.firstChild.nodeValue = "start timer ";
+  timerStatus.textContent = `stopped at ${renderTimer(elapsed)}.`;
   resetButton.disabled = false;
 }
 
@@ -46,35 +46,35 @@ timerButton.addEventListener("click", () => {
   }
   renderTimer(0);
   startedAt = performance.now();
-  timerButton.firstChild.nodeValue = "Stop timer ";
-  timerStatus.textContent = "Timer running.";
+  timerButton.firstChild.nodeValue = "stop timer ";
+  timerStatus.textContent = "timer running.";
   resetButton.disabled = true;
   frame = requestAnimationFrame(tick);
 });
 
 resetButton.addEventListener("click", () => {
   renderTimer(0);
-  timerStatus.textContent = "Timer reset.";
+  timerStatus.textContent = "timer reset.";
   timerButton.focus();
   resetButton.disabled = true;
 });
 
 const screenshots = {
   timer: [
-    "basics. Android timer showing a scramble, solve time, and cube diagram",
-    "Start with a 3×3 scramble and an optional 15-second inspection. Once you start the solve, the clock takes over the screen."
+    "basics. android timer showing a scramble, solve time, and cube diagram",
+    "start with a 3×3 scramble and an optional 15-second inspection. once you start the solve, the clock takes over the screen."
   ],
   history: [
     "basics. history screen listing individual solve times",
-    "Review individual solves in a named session, revisit their scrambles, and apply +2 or DNF penalties."
+    "review individual solves in a named session, revisit their scrambles, and apply +2 or dnf penalties."
   ],
   stats: [
     "basics. stats screen showing session bests and rolling averages",
-    "Track personal bests, session averages, and rolling averages such as ao5 and ao12."
+    "track personal bests, session averages, and rolling averages such as ao5 and ao12."
   ],
   charts: [
     "basics. charts screen plotting solve times",
-    "See how your times change over a session and where most of your solves land."
+    "see how your times change over a session and where most of your solves land."
   ]
 };
 const galleryButtons = [...document.querySelectorAll("[data-panel]")];
