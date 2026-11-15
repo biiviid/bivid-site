@@ -109,7 +109,15 @@ h3 { font-size: clamp(1.7rem, 3.5vw, 2.8rem); }
 }
 
 .button:hover { background: var(--cream); }
-.hero .button { margin-top: 1.9rem; }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+  margin-top: 1.9rem;
+}
+
+.apk-meta { margin-top: .6rem; font-size: .85rem; }
 
 .hero-art {
   position: relative;
