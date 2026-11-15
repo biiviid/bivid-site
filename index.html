@@ -568,8 +568,8 @@
         <div class="seek-dot" id="seekDot"></div>
       </div>
       <div class="project-meta">
-        <span id="projTitle">vo.id</span>
-        <span id="projDesc">on-device ai assistant that turns photos into reminders</span>
+        <span id="projTitle">ping</span>
+        <span id="projDesc">a quiet android planner for tasks, reminders, and shared deadlines</span>
       </div>
       <div class="controls-row">
         <div class="controls">
@@ -812,8 +812,6 @@
     /* ===== carousel ===== */
     // images/links are placeholders until real assets and urls exist
     const projects = [
-      { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime, reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
-      { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes, built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
       {
         title: 'ping',
         desc: 'a quiet android planner for tasks, reminders, and shared deadlines',
@@ -828,7 +826,6 @@
         ],
         detail: 'tasks move toward the center of the map as deadlines approach. keep personal reminders and shared work together, save changes offline, and put one item on your home screen with the widget.'
       },
-      { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor, detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
       {
         title: 'cutlog',
         desc: 'calorie, protein, and weight tracker for android',
@@ -843,6 +840,9 @@
         detail: 'log meals with a built-in database of filipino dishes like chicken adobo and sinigang na bangus. set daily nutrition targets, chart your weight over time, and see calories or macros at a glance with home screen widgets.'
       },
       { title: 'basics.', desc: 'a basic speedcubing timer', link: 'https://github.com/biiviid/CubeChron', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, the period in the name stands for back to the basics, no unnecessary features' },
+      { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime, reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
+      { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes, built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
+      { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor, detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
       { title: "bob's studio", desc: 'offline agentic ide running a local model', link: 'https://github.com/biiviid/bob_studio', images: ['bobSS/bob1.png', 'bobSS/bob2.png'], detail: "an agentic ide that runs entirely on a locally hosted model, qwen2.5-coder:3b via ollama, an offline agentic ide built for the laughs and the party trick points" }
     ];
     // exposed so the mobile equalizer script (bottom of page) can measure the
