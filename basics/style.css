@@ -60,23 +60,19 @@ a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
   padding-block: clamp(38px, 4.5vw, 62px);
 }
 .intro h1 {
-  font: 700 clamp(3.1rem, 8.6vw, 7rem)/1 Orbitron;
+  font-size: clamp(.95rem, 2.15vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.55;
+}
+.intro h1 span { display: block; }
+.intro h1 strong {
+  display: block;
+  margin-top: .14em;
+  font-size: clamp(3.1rem, 8.6vw, 7rem);
+  line-height: 1;
   letter-spacing: -.06em;
 }
-.lead {
-  max-width: 31ch;
-  margin-top: 19px;
-  color: var(--secondary);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.5;
-}
 
-.origin {
-  margin-top: 14px;
-  max-width: 43ch;
-  color: var(--secondary);
-  line-height: 1.7;
-}
 .timer-shot { width: min(100%, 245px); justify-self: center; }
 .shot-frame {
   padding: clamp(8px, 1.2vw, 14px);
@@ -88,18 +84,11 @@ a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
   height: auto;
   border: 1px solid var(--screenshot-edge);
 }
-figcaption { padding-top: 12px; line-height: 1.65; }
-figcaption strong { font-size: .95rem; }
-figcaption p { margin-top: 3px; color: var(--secondary); font-size: .87rem; }
 
 .showcase {
   border-block: 1px solid var(--border);
   background: var(--surface);
   padding-block: clamp(36px, 6vw, 72px);
-}
-.showcase h2 {
-  margin-bottom: 24px;
-  font-size: clamp(1.3rem, 3vw, 2rem);
 }
 .gallery {
   display: grid;
