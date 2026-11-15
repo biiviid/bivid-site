@@ -1,5 +1,12 @@
 @font-face {
   font-family: Orbitron;
+  src: url("assets/orbitron-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Orbitron;
   src: url("assets/orbitron.ttf") format("truetype");
   font-weight: 700;
   font-display: swap;
@@ -11,11 +18,10 @@
   --surface: #1c1b1b;
   --panel: #20201f;
   --hover: #2a2a2a;
-  --text: #fff;
+  --text: #ffffff;
   --secondary: #c6c6c6;
-  --muted: #8e9192;
   --border: #444748;
-  font-family: system-ui, sans-serif;
+  font-family: Orbitron;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -35,7 +41,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
   gap: 16px;
 }
 .nav { border-bottom: 1px solid var(--border); }
-.footer { border-top: 1px solid var(--border); }
+.footer { justify-content: flex-end; }
 .nav nav { display: flex; gap: 22px; }
 .nav nav, .footer { font-size: .9rem; }
 .nav a, .footer .wordmark { text-decoration: none; }
@@ -44,11 +50,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font: 700 1.15rem Orbitron, sans-serif;
+  font: 700 1.15rem Orbitron;
 }
 .logo { display: block; width: 24px; height: 24px; }
 
-.hero, .gallery, .details {
+.hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -56,26 +62,25 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
   padding-block: clamp(48px, 7vw, 96px);
 }
 .intro h1 {
-  font: 700 clamp(3.1rem, 8.6vw, 7rem)/1 Orbitron, sans-serif;
+  font: 700 clamp(3.1rem, 8.6vw, 7rem)/1 Orbitron;
   letter-spacing: -.06em;
 }
 .lead {
   max-width: 31ch;
-  margin-block: 19px 26px;
+  margin-top: 19px;
   color: var(--secondary);
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.5;
 }
-.button, .instrument-foot button, .gallery-controls button {
+.instrument-foot button, .gallery-controls button {
   min-height: 44px;
   padding: 10px 15px;
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  font: 700 .75rem Orbitron, sans-serif;
+  font: 700 .75rem Orbitron;
 }
-.button { display: inline-flex; align-items: center; text-decoration: none; }
-.button:hover, button:enabled:hover { background: var(--hover); border-color: var(--secondary); }
+button:enabled:hover { background: var(--hover); border-color: var(--secondary); }
 
 .instrument {
   min-width: 0;
@@ -92,13 +97,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 .instrument-head {
   border-bottom: 1px solid var(--border);
   color: var(--secondary);
-  font: 700 .75rem Orbitron, sans-serif;
+  font: 700 .75rem Orbitron;
 }
 .instrument-foot { border-top: 1px solid var(--border); }
 .instrument-foot button:first-child {
   display: flex;
   flex: 1;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: var(--text);
   color: var(--background);
@@ -111,17 +116,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
   border: 1px solid var(--border);
   background: var(--panel);
   color: var(--secondary);
-  font-family: Orbitron, sans-serif;
+  font-family: Orbitron;
 }
-.scramble span { font-size: .65rem; color: var(--muted); }
-.scramble p { margin-top: 7px; font-size: clamp(.75rem, 1.25vw, .92rem); line-height: 1.65; }
+.scramble p { font-size: clamp(.75rem, 1.25vw, .92rem); line-height: 1.65; }
 .readout {
   container-type: inline-size;
   display: flex;
   justify-content: center;
   align-items: baseline;
   padding: 33px 10px;
-  font: 700 1rem Orbitron, sans-serif;
+  font: 700 1rem Orbitron;
   white-space: nowrap;
 }
 .readout span, .readout b { font-size: 13cqi; text-align: center; }
@@ -129,31 +133,29 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 .readout b { width: .30em; }
 
 .showcase { border-block: 1px solid var(--border); background: var(--surface); }
-.gallery { padding-block: 48px; }
+.gallery {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding-block: 40px;
+}
+.gallery-content { grid-row: 1; }
 .device-stage {
   display: grid;
   place-items: center;
   background: var(--background);
   border: 1px solid var(--border);
+  width: min(100%, 460px);
   padding: 20px;
 }
-.device { width: min(205px, 100%); }
+.device { width: min(250px, 100%); }
 .device img { display: block; width: 100%; height: auto; }
-.gallery h2, .details h2 { font: 700 clamp(1.55rem, 3.3vw, 2.6rem)/1.2 Orbitron, sans-serif; }
-.gallery-controls { display: flex; flex-wrap: wrap; gap: 6px; margin-block: 22px 16px; }
+.gallery-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
 .gallery-controls button[aria-pressed=true] {
   background: var(--text);
   border-color: var(--text);
   color: var(--background);
 }
-.gallery-content > p, .details p {
-  max-width: 42ch;
-  color: var(--secondary);
-  line-height: 1.6;
-}
-.gallery-content > p { min-height: 5em; }
-.details { align-items: start; }
-.details p + p { margin-top: 12px; }
 .sr-only {
   position: absolute;
   width: 1px;
@@ -166,8 +168,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 @media (max-width: 690px) {
   .shell { width: calc(100% - 32px); }
   .nav nav { gap: 12px; }
-  .hero, .gallery, .details { grid-template-columns: 1fr; gap: 25px; padding-block: 35px; }
-  .gallery-content { grid-row: 1; }
-  .gallery-content > p { min-height: 0; }
+  .hero { grid-template-columns: 1fr; gap: 25px; padding-block: 35px; }
   .gallery-controls button { padding-inline: 11px; }
 }

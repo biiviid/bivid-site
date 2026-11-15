@@ -33,7 +33,7 @@ function tick(now) {
 function finish(elapsed) {
   cancelAnimationFrame(frame);
   startedAt = null;
-  timerButton.firstChild.nodeValue = "start timer ";
+  timerButton.textContent = "start timer";
   timerStatus.textContent = `stopped at ${renderTimer(elapsed)}.`;
   resetButton.disabled = false;
 }
@@ -46,7 +46,7 @@ timerButton.addEventListener("click", () => {
   }
   renderTimer(0);
   startedAt = performance.now();
-  timerButton.firstChild.nodeValue = "stop timer ";
+  timerButton.textContent = "stop timer";
   timerStatus.textContent = "timer running.";
   resetButton.disabled = true;
   frame = requestAnimationFrame(tick);
@@ -59,34 +59,19 @@ resetButton.addEventListener("click", () => {
   resetButton.disabled = true;
 });
 
-const screenshots = {
-  timer: [
-    "basics. android timer showing a scramble, solve time, and cube diagram",
-    "start with a 3×3 scramble and an optional 15-second inspection. once you start the solve, the clock takes over the screen."
-  ],
-  history: [
-    "basics. history screen listing individual solve times",
-    "review individual solves in a named session, revisit their scrambles, and apply +2 or dnf penalties."
-  ],
-  stats: [
-    "basics. stats screen showing session bests and rolling averages",
-    "track personal bests, session averages, and rolling averages such as ao5 and ao12."
-  ],
-  charts: [
-    "basics. charts screen plotting solve times",
-    "see how your times change over a session and where most of your solves land."
-  ]
+const screenshotDescriptions = {
+  timer: "basics. android timer showing a scramble, solve time, and cube diagram",
+  history: "basics. history screen listing individual solve times",
+  stats: "basics. stats screen showing session bests and rolling averages",
+  charts: "basics. charts screen plotting solve times"
 };
 const galleryButtons = [...document.querySelectorAll("[data-panel]")];
 const appShot = document.querySelector("#app-shot");
-const galleryCaption = document.querySelector("#gallery-caption");
 galleryButtons.forEach(button => {
   button.addEventListener("click", () => {
     const panel = button.dataset.panel;
-    const [alt, caption] = screenshots[panel];
     galleryButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
     appShot.src = `assets/${panel}.png`;
-    appShot.alt = alt;
-    galleryCaption.textContent = caption;
+    appShot.alt = screenshotDescriptions[panel];
   });
 });

@@ -11,60 +11,49 @@
 <meta property="og:description" content="an offline android timer for 3×3 speedcubing.">
 <meta name="theme-color" content="#131313">
 <link rel="icon" href="assets/icon.png">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <title>basics. — offline speedcubing timer</title>
-<script src="site.js?v=2" defer></script>
+<script src="site.js?v=3" defer></script>
 </head>
 <body>
 <header class="shell nav">
   <a class="wordmark" href="#" aria-label="basics. home"><img class="logo" src="assets/icon.png" width="24" height="24" alt="">basics.</a>
-  <nav aria-label="main navigation"><a href="#app">the app</a><a class="repo" href="https://github.com/biiviid/basics">github ↗</a></nav>
+  <nav aria-label="main navigation"><a href="#app">the app</a><a class="repo" href="https://github.com/biiviid/basics">github</a></nav>
 </header>
 <main>
   <section class="shell hero" aria-labelledby="intro">
     <div class="intro">
       <h1 id="intro">basics.</h1>
-      <p class="lead">a minimal 3×3 speedcubing timer for android.</p>
-      <a class="button" href="#app">see the app ↓</a>
+      <p class="lead">an offline 3×3 timer for android.</p>
     </div>
     <div class="instrument">
-      <div class="instrument-head"><span>timer demo</span><span>3×3</span></div>
-      <div class="scramble"><span>sample scramble</span><p>R U R′ F2 D L2 U′ B2<br>R2 F D′ B U2 L F′ R</p></div>
+      <div class="instrument-head"><span>timer demo</span></div>
+      <div class="scramble"><p>R U R' F2 D L2 U' B2<br>R2 F D' B U2 L F' R</p></div>
       <div class="readout" aria-hidden="true">
         <span>0</span><b>:</b><span>0</span><span>0</span><b>.</b><span>0</span><span>0</span><span>0</span>
       </div>
       <div id="timer-status" class="sr-only" role="status"></div>
-      <div class="instrument-foot"><button id="timer-button" type="button" disabled>start timer <span aria-hidden="true">↗</span></button><button id="reset-button" type="button" disabled>reset</button></div>
+      <div class="instrument-foot"><button id="timer-button" type="button" disabled>start timer</button><button id="reset-button" type="button" disabled>reset</button></div>
     </div>
   </section>
-  <section id="app" class="showcase">
+  <section id="app" class="showcase" aria-label="app screens">
     <div class="shell gallery">
       <div class="device-stage">
         <div class="device"><img id="app-shot" src="assets/timer.png" width="1080" height="2400" alt="basics. android timer showing a scramble, solve time, and cube diagram" loading="lazy"></div>
       </div>
       <div class="gallery-content">
-        <h2>app screens</h2>
         <div class="gallery-controls" aria-label="app screenshots">
           <button type="button" data-panel="timer" aria-pressed="true">timer</button>
           <button type="button" data-panel="history" aria-pressed="false">history</button>
           <button type="button" data-panel="stats" aria-pressed="false">stats</button>
           <button type="button" data-panel="charts" aria-pressed="false">charts</button>
         </div>
-        <p id="gallery-caption" aria-live="polite">start with a 3×3 scramble and an optional 15-second inspection. once you start the solve, the clock takes over the screen.</p>
       </div>
-    </div>
-  </section>
-  <section class="shell details">
-    <h2>works offline.</h2>
-    <div>
-      <p>scrambles, sessions, and solve stats work on your phone without an account or internet connection.</p>
-      <p>enter a cube state by coloring its faces, or move your solve history between basics. and cstimer with json import and export.</p>
     </div>
   </section>
 </main>
 <footer class="shell footer">
-  <a class="wordmark" href="#" aria-label="back to top"><img class="logo" src="assets/icon.png" width="24" height="24" alt="">basics.</a>
-  <a href="https://biiviid.github.io/basics/privacy-policy.html">privacy policy ↗</a>
+  <a href="https://biiviid.github.io/basics/privacy-policy.html">privacy policy</a>
 </footer>
 </body>
 </html>
