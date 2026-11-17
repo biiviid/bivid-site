@@ -262,6 +262,23 @@
     color: #c8c7c0;
   }
 
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    margin-top: 14px;
+    font-family: var(--font-ui);
+    font-size: 16px;
+  }
+  .project-links a {
+    color: #c8c7c0;
+    padding-block: 6px;
+    text-underline-offset: 3px;
+  }
+  .project-links a:hover,
+  .project-links a:focus-visible { color: #f4f3ee; }
+  .project-links a:focus-visible { outline-color: #f4f3ee; }
+
   /* visible keyboard focus (brief section 8) */
   button:focus-visible,
   .project-frame:focus-visible {
@@ -586,6 +603,11 @@
         </div>
         <div class="projects-label">my projects</div>
       </div>
+      <nav class="project-links" aria-label="Project landing pages">
+        <a href="/ping/">Ping</a>
+        <a href="/cutlog/">CutLog</a>
+        <a href="/basics/">basics.</a>
+      </nav>
     </div>
   </div>
 
@@ -840,7 +862,7 @@
         ],
         detail: 'log meals with a built-in database of filipino dishes like chicken adobo and sinigang na bangus. set daily nutrition targets, chart your weight over time, and see calories or macros at a glance with home screen widgets.'
       },
-      { title: 'basics.', desc: 'a basic speedcubing timer', link: '/basics/', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, the period in the name stands for back to the basics, no unnecessary features' },
+      { title: 'basics.', desc: 'a basic speedcubing timer', link: '/basics/', linkLabel: 'open basics.', images: ['basicsSS/basics1.png', 'basicsSS/basics2.jpg', 'basicsSS/basics3.jpg', 'basicsSS/basics4.png', 'basicsSS/basics5.jpg'], detail: 'a basic speedcubing timer, the period in the name stands for back to the basics, no unnecessary features' },
       { title: 'vo.id', desc: 'on-device ai assistant that turns photos into reminders', link: 'https://github.com/biiviid/vo.id', images: ['voidSS/void1.png', 'voidSS/void2.jpg', 'voidSS/void3.jpg', 'voidSS/void4.jpg', 'voidSS/void5.jpg'], detail: 'local-first on-device ai assistant for students, powered by phi-3 mini and phi-3 vision via onnx runtime, reads photos of assignments and deadlines and turns them into reminders, everything stays on the device' },
       { title: 'mapit', desc: 'offline map for the last mile', link: 'https://github.com/biiviid/MapIt', images: ['mapSS/map1.jpg', 'mapSS/map2.jpg', 'mapSS/map3.jpg', 'mapSS/map4.jpg', 'mapSS/map5.jpg'], detail: 'an offline-first map for recording paths and submitting them as routes, built to help map the last mile, the rural barangays and eskinitas that mainstream map apps miss' },
       { title: 'ligtas', desc: 'fall detection with gps tracking for emergencies', link: 'https://github.com/biiviid/Ligtas', images: ['LigtasSS/ligtas1.png', 'LigtasSS/ligtas2.jpg', 'LigtasSS/ligtas3.jpg', 'LigtasSS/ligtas4.jpg', 'LigtasSS/ligtas5.png'], detail: 'a hardware-first safety app paired with an esp-32 and a motion sensor, detects sudden movements like a beefier fall detector, and estimates location from gps and motion recordings for emergencies' },
