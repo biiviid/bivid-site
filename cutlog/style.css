@@ -118,6 +118,7 @@ h3 { font-size: clamp(1.7rem, 3.5vw, 2.8rem); }
 }
 
 .apk-meta { margin-top: .6rem; font-size: .85rem; }
+.hero .eyebrow { color: var(--cream); }
 
 .hero-art {
   position: relative;
@@ -195,10 +196,10 @@ h3 { font-size: clamp(1.7rem, 3.5vw, 2.8rem); }
 }
 
 .gold { background: var(--gold); }
-.coral, .closing { background: var(--coral); }
+.coral, .closing { background: var(--coral); color: #12392e; }
 .teal { background: var(--teal); color: var(--cream); }
 .pale { background: var(--cream); }
-.closing { color: var(--ink); }
+.closing { color: #12392e; }
 .closing-grid { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 27px; }
 .closing p { margin-top: 1.15em; }
 .closing .button { background: var(--ink); color: var(--cream); }
