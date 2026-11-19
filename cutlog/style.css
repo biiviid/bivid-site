@@ -43,9 +43,9 @@ figure, p, h1, h2, h3 { margin: 0; }
   align-items: center;
 }
 
-.top, .footer { justify-content: space-between; gap: 18px; }
+.top, .footer { justify-content: space-between; gap: 18px; flex-wrap: wrap; }
 .top { min-height: 79px; border-bottom: 1px solid #fff7df40; }
-nav { gap: clamp(14px, 4vw, 45px); }
+nav { gap: clamp(14px, 4vw, 45px); flex-wrap: wrap; }
 .top a, .brand { text-decoration: none; }
 .top a:hover, .footer a:hover { text-decoration: underline; }
 

@@ -38,9 +38,9 @@ a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
   justify-content: space-between;
   gap: 16px;
 }
-.nav { border-bottom: 1px solid var(--border); }
+.nav { border-bottom: 1px solid var(--border); flex-wrap: wrap; }
 .footer { justify-content: flex-end; flex-wrap: wrap; }
-.nav nav { display: flex; gap: 22px; }
+.nav nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .nav nav, .footer { font-size: .9rem; }
 .nav a { text-decoration: none; }
 .nav nav a:hover, .footer a:hover { text-decoration: underline; }
