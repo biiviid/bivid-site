@@ -1,0 +1,11 @@
+# CutLog nutrition catalog
+
+The release catalog replaces all 264 prior records because their per-row redistribution provenance was not established. The current 75 entries use 40 traceable USDA ingredients, including 20 original assembled-serving recipe estimates. No FatSecret or FNRI values are used in the replacement catalog. Existing custom foods and saved meal nutrition snapshots are retained during upgrade.
+
+Source: U.S. Department of Agriculture, Agricultural Research Service. FoodData Central, SR Legacy (final April 2018 release, published in FoodData Central 2019). https://fdc.nal.usda.gov/ . License: CC0 1.0 Universal; USDA's licensing statement is https://fdc.nal.usda.gov/api-guide/#licensing . No USDA endorsement is implied.
+
+`usda-sr-legacy.csv` preserves FDC IDs, original descriptions and energy/protein/carbohydrate/fat per 100 g, extracted from the official SR Legacy CSV archive. `servings.json` specifies the edible grams for every portion. `PROVENANCE.tsv` lists the calculation and FDC IDs for every shipped record. Regenerate with `python3 tools/generate_food_catalog.py`.
+
+Each amount is sum(ingredient grams × USDA nutrient per 100 g / 100), rounded once to one decimal place. Water contributes zero energy/macros. Recipes specify cooked edible component weights assembled into one serving; they are independently chosen examples, not measured restaurant dishes or population averages. They do not model cooking losses or recipe-specific yield. Actual ingredients, oil, brands and portions vary. Prefer the actual product label and enter custom foods when available. No nutritional or medical accuracy is guaranteed. Some recipes use raw edible vegetables as listed; the ingredient ledger makes that assumption explicit.
+
+Historical user logs retain the original per-serving snapshots for data continuity; their old food references are cleared when replacing built-ins. Custom food IDs and nutrition values are untouched. The replacement is a smaller, auditable starting catalog. Owners can expand it by adding traceable inputs and explicit recipes, then regenerating and checking the ledger.
