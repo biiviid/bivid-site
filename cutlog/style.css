@@ -206,6 +206,7 @@ h3 { font-size: clamp(1.7rem, 3.5vw, 2.8rem); }
 .closing .button:hover { background: var(--teal); }
 .footer {
   min-height: 96px;
+  flex-direction: column;
   align-items: flex-start;
   flex-wrap: wrap;
   padding-block: 24px;
@@ -214,10 +215,11 @@ h3 { font-size: clamp(1.7rem, 3.5vw, 2.8rem); }
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 10px 18px;
-  max-width: 720px;
-  text-align: right;
+  width: 100%;
+  max-width: none;
+  text-align: left;
 }
 
 @media (max-width: 72rem) {
@@ -240,7 +242,6 @@ h3 { font-size: clamp(1.7rem, 3.5vw, 2.8rem); }
   .plate { width: 57%; left: 9%; bottom: 19%; }
   .photo-grid { grid-template-columns: 1fr; gap: 20px; }
   .footer { align-items: flex-start; gap: 16px; }
-  .footer-links { justify-content: flex-start; max-width: none; text-align: left; }
 }
 
 @media (max-width: 34rem) {
